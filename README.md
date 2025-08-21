@@ -10,7 +10,7 @@
 My name is Yana, a QA Engineer living in Sweden. I'm obsessed with local food 🍰, cozy nights with a book and my dog at my feet 🐶… and just *cannot* walk past anything that’s broken 😅.
 
 
-- 📫 Contact me: [![LinkedIn Badge](https://img.shields.io/badge/-@yanazharnikovich-blue?style=flat&logo=LinkedIn&logoColor=white)](https://www.linkedin.com/in/yanazharnikovich/) [![Gmail Badge](https://img.shields.io/badge/-Gmail-red?style=flat&logo=Gmail&logoColor=white)](mailto:ya.zharnikovich@gmail.com)
+- 📫 Contact me: [![LinkedIn Badge](https://img.shields.io/badge/-@yanazharnikovich-blue?style=flat&logo=LinkedIn&logoColor=white)](https://www.linkedin.com/in/yanazharnikovich/) [![Gmail Badge](https://img.shields.io/badge/-Gmail-red?style=flat&logo=Gmail&logoColor=white)](https://mail.google.com/mail/?view=cm&to=ya.zharnikovich@gmail.com)
 
 
 ---
