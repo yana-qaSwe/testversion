@@ -291,7 +291,7 @@ Password: 12345678q
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
 2 | Enter a login from pre-conditions in the "Login" field| log2_ | The login is displayed without an error message
-3 | Enter a password from pre-conditions the "Password" field empty| 12345678q | The password is displayed without an error message
+3 | Enter a password from pre-conditions the "Password" field| 12345678q | The password is displayed without an error message
 4 | Click the "Sign in" button | -	| The error message "An account with this login/password already exists" is displayed
 
 **Result**: PASSED
@@ -299,6 +299,85 @@ Password: 12345678q
 ***
 
 </details>
+
+<details>
+<summary>ID-12: Login with valid data</summary>
+
+***
+**Pre-conditions:**
+
+User is already registered
+Login: log2_
+Password: 12345678q
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a login from pre-conditions in the "Login" field| log2_ | The login is displayed without an error message
+3 | Enter a password from pre-conditions the "Password" field| 12345678q | The password is displayed without an error message
+4 | Click the "Log in" button | -	| The user is redirected to the homepage
+
+**Result**: PASSED
+
+***
+
+</details>
+
+<details>
+<summary>ID-12: Login with an invalid login and a valid password</summary>
+
+***
+**Pre-conditions:**
+
+User is already registered
+Login: log2_
+Password: 1234578q
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter an invalid login in the "Login" field| log | The login is displayed without an error message
+3 | Enter a password from pre-conditions the "Password" field| 12345678q | The password is displayed without an error message
+4 | Click the "Log in" button | -	| The error message "Incorrect username or password" is displayed
+
+**Result**: FAILED
+
+**ID Bug-report**: [BUG-2707](#BUG-2707)
+
+***
+
+</details>
+
+</details>
+
+<details>
+<summary>ID-12: Login with a valid login and an invalid password</summary>
+
+***
+**Pre-conditions:**
+
+User is already registered
+Login: log2_
+Password: 1234578q
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a login from pre-conditions in the "Login" field| log2_ | The login is displayed without an error message
+3 | Enter an invalid password from pre-conditions the "Password" field| 123456789 | The password is displayed without an error message
+4 | Click the "Log in" button | -	| The error message "Incorrect username or password" is displayed
+
+**Result**: FAILED
+
+**ID Bug-report**: [BUG-2707](#BUG-2707)
+
+***
+
+</details>
+
 
 **3. Bug-reports**
 
@@ -519,5 +598,36 @@ Google Chrome 138.0.7204.101<br>
 ***
 
 </details>
+
+<a name="BUG-2707" />
+<details>
+<summary>BUG-2709: Login: wrong credentials show incorrect error message</summary>
+
+***
+
+**Steps:**
+
+1. Open qa.demoshopping.ru/login
+2. Enter an invalid login or password in the Login section 
+3. Click the “Log in” button 
+
+**Actual result**: an incorrect message is displayed: “An error occurred while processing the request”
+
+**Expected result**: the message displayed should be: “Incorrect username or password” 
+
+**Environment:**
+
+Windows 10 Pro Version 22H2
+
+Google Chrome 138.0.7204.101<br>
+
+**Attachments**: [authCard.webm]
+
+**Priority**: High
+
+***
+
+</details>
+
 
 [Back to top](#up)
