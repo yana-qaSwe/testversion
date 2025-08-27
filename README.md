@@ -72,7 +72,7 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 |22|	Paging design matches the mockup and functions correctly|PASSED|	-|
 |23|	Input fields: allow editing of entered data; field labels correspond to their logic; input data formats meet the requirements|	PASSED|	-|
 |24|	Error messages are positioned according to the design and fully visible|	PASSED|-|
-|25|	The page layout adapts to screen size changes|	FAILED|	[BUG-2614](#BUG-2614git )|
+|25|	The page layout adapts to screen size changes|	FAILED|	[BUG-2614](#BUG-2614)|
 
 **2. Test-cases: Registration and Authorization**
 
