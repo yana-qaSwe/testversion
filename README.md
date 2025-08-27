@@ -76,19 +76,19 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 
 **3. Bug-reports**
 
-<a name="BUG-2608" />
+### BUG-2608
 <details>
 <summary>BUG-2608: The website's favicon isn't displayed on the browser tab</summary>
 
----
+***
 
 **Steps:**
 
 1. Open demoshopping.ru.
 
-Actual result: the website's favicon isn't displayed on the browser tab.
+**Actual result**: the website's favicon isn't displayed on the browser tab.
 
-Expected result: the website's favicon is displayed on the browser tab.
+**Expected result**: the website's favicon is displayed on the browser tab.
 
 **Environment:**
 
@@ -100,15 +100,15 @@ Google Chrome 138.0.7204.101<br>
 
 **Priority**: Low
 
----
+***
 
 </details>
 
-<a name="BUG-2614" />
+### BUG-2614
 <details>
 <summary>BUG-2614:Pagination is not responsive and shifts off-screen when resizing the layout</summary>
 
----
+***
 
 **Steps:**
 
@@ -116,9 +116,9 @@ Google Chrome 138.0.7204.101<br>
 2. Resize the browser window.
 3. Observe the pagination block.
 
-Actual Result: pagination shifts off-screen and becomes partially hidden.
+**Actual Result**: pagination shifts off-screen and becomes partially hidden.
 
-Expected Result: pagination remains visible and correctly aligned within the viewport.
+**Expected Result**: pagination remains visible and correctly aligned within the viewport.
 
 **Environment:**
 
@@ -130,15 +130,15 @@ Google Chrome 138.0.7204.101<br>
 
 **Priority**: Medium
 
----
+***
 
 </details>
 
-<a name="BUG-2611" />
+### BUG-2611
 <details>
 <summary>BUG-2611: The quantity input fields on the product cards on the main page accept invalid characters</summary>
 
----
+***
 
 **Steps:**
 
@@ -147,9 +147,9 @@ Google Chrome 138.0.7204.101<br>
 3. Click "Add to card"
 
 
-Actual result: the product was added to the card.
+**Actual result**: the product was added to the card.
 
-Expected result: negative values should be rejected.
+**Expected result**: negative values should be rejected.
 
 **Environment:**
 
@@ -161,15 +161,15 @@ Google Chrome 138.0.7204.101<br>
 
 **Priority**: Higt
 
----
+***
 
 </details>
 
-<a name="BUG-2610" />
+### BUG-2610
 <details>
 <summary>BUG-2610: The "Min.price" and "Max.price" input fields accept negative values on the main page</summary>
 
----
+***
 
 **Steps:**
 
@@ -177,9 +177,9 @@ Google Chrome 138.0.7204.101<br>
 2. Enter -75 in the "Min.price" or "Max.price" field.
 3. Click "Apply a filter".
 
-Actual result: the request is processed, and the filtering occurs as if the negative value were valid.
+**Actual result**: the request is processed, and the filtering occurs as if the negative value were valid.
 
-Expected result: negative values should be rejected.
+**Expected result**: negative values should be rejected.
 
 **Environment:**
 
@@ -191,7 +191,7 @@ Google Chrome 138.0.7204.101<br>
 
 **Priority**: Higt
 
----
+***
 
 </details>
 
