@@ -441,9 +441,12 @@ Google Chrome 138.0.7204.101<br>
 
 <a name="BUG-2611" />
 <details>
-<summary>BUG-2611: The quantity input fields on the product cards on the main page accept invalid characters</summary>
+<summary>BUG-2611: The quantity fields on the product cards on the main page accept invalid characters</summary>
 
 ***
+**Pre-conditions:**
+
+The user is authorized
 
 **Steps:**
 
