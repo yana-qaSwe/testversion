@@ -74,6 +74,61 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 |24|	Error messages are positioned according to the design and fully visible|	PASSED|-|
 |25|	The page layout adapts to screen size changes|	FAILED|	[BUG-2614](#BUG-2614git )|
 
+**2. Test-cases: Registration and Authorization**
+
+<details>
+<summary>ID-1: Registration with valid login and valid password</summary>
+
+***
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://demoshopping.ru/login | -	| The login page is opened
+2 | Input a valid login in the "Login" field | log2_	| The login is displayed without an error message
+3 | Input a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| User is successfully registered and redirected to main page
+
+**Result**: PASSED
+
+***
+
+</details>
+
+<details>
+<summary>ID-2: Отображение панели результата расчёта стоимости и времени поездки в режиме "Быстрый"</summary>
+
+***
+
+**Предусловие**:
+1. Открыть Яндекс.Маршруты: [https://qa-routes.praktikum-services.ru].
+
+**Шаги**:
+1. Ввести время начала поездки: 12:00.
+2. В поле "Откуда" ввести адрес: Усачева, 3.
+3. В поле "Куда" ввести адрес: Фрунзенская набережная, 46.
+4. Выбрать режим "Быстрый".
+
+**ОР**: В панели результата расчёта отображается информация о поездке.
+
+В левой части панели:
+- <Название вида транспорта> ~ <стоимость> руб.
+- В пути <время> мин.
+- Кнопка действия синего цвета с надписью, соответствующей виду транспорта; например, для такси: "Вызвать такси"
+
+В правой части панели:
+- Картинка вида транспорта
+
+**Окружение**: Yandex.Browser не ниже 20.0, разрешение 800х600; Firefox не ниже 75.0, разрешение 1280х720
+
+**Результат**: FAILED
+
+**ID баг-репорта**: [BUG-8351](#BUG-8351)
+
+***
+
+</details>
+
 **3. Bug-reports**
 
 <a name="BUG-2608" />
