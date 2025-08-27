@@ -1,98 +1,200 @@
-# Hello there!
+
+# <a name="up" />QA_Portfolio
+
+The portfolio includes some projects completed during QA Engineer training.
+
+[Web Testing](#web-testing)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+[Mobile Testing](#mobile-testing)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
+[API Testing](#api-testing)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+[Database](#data-bases)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 
 
----
+## <a name="web-testing" />Web Testing
+
+### Objective
+
+Verify the correctness of the website layout and the functionality of key modules for Demoshoping.ru.
+
+**1. Study Requirements:**
+
+Review the requirements for the Demoshoping.ru service. Analyze the layout requirements, including design mockups and UI component specification
+
+**2. Test Documentation for Layout**
+
+- Analyze the layout requirements: visual appearance and correct positioning
+- Make sure the checklist includes: compliance with mockups (visual inspection, not “pixel-perfect”); responsiveness and proper display on different screen resolutions.
+
+Create a detailed checklist to verify the visual aspects of the website
+
+**3. Test Registration and Login Modules**
+
+Verify the registration and login functionality, including user authorization.
 
 
-### 👨‍💻 About me:
+**4. Testing and Bug Reports**
+
+During testing, mark the test results as PASSED or FAILED. If a test is FAILED, create a bug report and record its ID in the corresponding results table.
+
+### Solution
+
+**1. Check-list for Layout**
+
+| № | Description | Windows 10 Pro Version 22H2
+Google Chrome 138.0.7204.101| ID bag-report |
+|:--:|:-----------|:-----:|:-------:|
+|1|After the page loads, there are no errors or warnings in the console|	PASSED| -|
+|2|	The website's favicon is displayed on the browser tab|	FAILED|	[BUG-2608](#BUG-2608)|
+|3|	The page title is displayed correctly on the browser tab and in the address bar|	PASSED	|	-|
+|4|The website header is implemented according to the design and is fully visible. The items "Catalog", "About Us" and "Contacts" in the header function as links that open the corresponding service pages when clicked|	PASSED|	-|
+|5|	The "Min. price" input field is displayed according to the design|	PASSED|	-|
+|6|	The "Max. price" input field is displayed according to the design|	PASSED	|	-|
+|7|	The number input spinners for "Max price" and "Min price" are displayed correctly|PASSED	| -|
+|8|	The "All categories" dropdown is displayed as per the design and functions correctly|PASSED| -|
+|9|	The "All manufacturers" dropdown is displayed as per the design and functions correctly|	PASSED	|	-|
+|10|	The checkbox "Free delivery" is displayed according to the design and works correctly|PASSED	| -|
+|11|	The "Apply filters" button is displayed according to the design and works correctly; clicking the button triggers a single action; repeated clicking does not trigger the action again|	PASSED	|	-|
+|12|	The "Reset filters" button is displayed according to the design and works correctly; clicking the button triggers a single action; repeated clicking does not trigger the action again|	PASSED|	-|
+|13|	All texts do not contain spelling errors|	PASSED	|	-|
+|14|	The "Registration/Login’" button is placed according to the design and is fully visible; clicking the button opens the Registration/Login page in a new tab|	PASSED|	-|
+|15|	The Demoshopping copyright and the "Terms of Use" link are placed according to the design and are fully visible; clicking the link opens the Demoshopping Terms of Use page in a new tab|	PASSED|	-|
+|16|	The "Sort" dropdown menu is displayed according to the design; clicking it opens and closes the menu; each option is clickable and triggers the correct action|	PASSED |-|
+|17|	Placeholders: the Min.price and Max.price input fields contain placeholders; the placeholder disappears when the user starts typing; it reappears if the field is cleared; the placeholder looks different from the user-entered data; all form placeholders have a consistent appearance|	PASSED|	-|
+|18|	Spinners: all spinners are displayed when the field is focused; the spinners function correctly|	FAILED	|[BUG-2610](#BUG-2610)|
+|19|	Error messages are positioned according to the design and are fully visible|	PASSED	|	-|
+|20|	The quantity input fields on the product cards are displayed according to the design; negative values or non-numeric values are not accepted|	FAILED|	[BUG-2611](#BUG-2611)|
+|21|	The "Add to Cart" buttons on each product card are positioned according to the design and displayed correctly; the button label matches its functionality|	PASSED|	-|
+|22|	Paging design matches the mockup and functions correctly|PASSED|	-|
+|23|	Input fields: allow editing of entered data; field labels correspond to their logic; input data formats meet the requirements|	PASSED|	-|
+|24|	Error messages are positioned according to the design and fully visible|	PASSED|-|
+|25|	The page layout adapts to screen size changes|	FAILED|	[BUG-2614](#BUG-2614git )|
+
+**3. Bug-reports**
+
+<a name="BUG-2608" />
+<details>
+<summary>BUG-2608: The website's favicon isn't displayed on the browser tab</summary>
+
+***
+
+**Steps:**
+
+1. Open demoshopping.ru.
+
+Actual result: the website's favicon isn't displayed on the browser tab.
+
+Expected result: the website's favicon is displayed on the browser tab.
+
+**Environment:**
+
+Windows 10 Pro Version 22H2
+
+Google Chrome 138.0.7204.101<br>
+
+**Attachments**: [authCard.webm]
+
+**Priority**: Low
+
+***
+
+</details>
+
+<a name="BUG-2614" />
+<details>
+<summary>BUG-2614:Pagination is not responsive and shifts off-screen when resizing the layout</summary>
+
+***
+
+**Steps:**
+
+1. Open Demoshopping.ru
+2. Resize the browser window.
+3. Observe the pagination block.
+
+Actual Result: pagination shifts off-screen and becomes partially hidden.
+
+Expected Result: pagination remains visible and correctly aligned within the viewport.
+
+**Environment:**
+
+Windows 10 Pro Version 22H2
+
+Google Chrome 138.0.7204.101<br>
+
+**Attachments**: [authCard.webm]
+
+**Priority**: Medium
+
+***
+
+</details>
+
+<a name="BUG-2611" />
+<details>
+<summary>BUG-2611: The quantity input fields on the product cards on the main page accept invalid characters</summary>
+
+***
+
+**Steps:**
+
+1. Open Demoshopping.ru
+2. In the quantity input field on any product card, enter invalid characters such as "+", "-", ".", ",'.
+3. Click "Add to card"
 
 
-My name is Yana, a QA Engineer living in Sweden. I'm obsessed with local food 🍰, cozy nights with a book and my dog at my feet 🐶… and just *cannot* walk past anything that’s broken 😅.
+Actual result: the product was added to the card.
 
+Expected result: negative values should be rejected.
 
-- 📫 Contact me: [![LinkedIn Badge](https://img.shields.io/badge/-@yanazharnikovich-blue?style=flat&logo=LinkedIn&logoColor=white)](https://www.linkedin.com/in/yanazharnikovich/) [![Gmail Badge](https://img.shields.io/badge/-Gmail-red?style=flat&logo=Gmail&logoColor=white)](https://mail.google.com/mail/?view=cm&to=ya.zharnikovich@gmail.com)
+**Environment:**
 
+Windows 10 Pro Version 22H2
 
----
-### 🤝 Social media:
+Google Chrome 138.0.7204.101<br>
 
+**Attachments**: [authCard.webm]
 
-  <div id="badges">
-    <a href="https://www.linkedin.com/in/yanazharnikovich/" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/2504/2504799.png" width="40" height="40" alt="linkedin" />
-    </a>
-    <a href="https://t.me/PinaAmericana" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" width="40" height="40" alt="telegram" />
-    </a>
-  </div>
+**Priority**: Higt
 
+***
 
----
+</details>
 
+<a name="BUG-2610" />
+<details>
+<summary>BUG-2610: The "Min.price" and "Max.price" input fields accept negative values on the main page</summary>
 
-### 📁 Test documentation:
+***
 
+**Steps:**
 
-<div>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg" title="jira" alt="jira" width="40" height="40"/>&nbsp
-   <img src="https://codahosted.io/packs/21236/unversioned/assets/LOGO/ba1091c59bab89cd2fd0f289622731fe16113d7b00905abe64759c313a4b73b76c1b0426076ed76cb74752234c734131df46992d5b8b48fc13e264240e4f7119f736cfeb64df36ded54b5cbf6198b9cadedf18dd0cac5c7dbcd16e6336c29363cd1292ba" title="testrail" alt="tetstrail" width="40" height="40"/>&nbsp
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" title="figma" alt="figma" width="40" height="40"/>&nbsp
-</div>
+1. Open Demoshopping.ru
+2. Enter -75 in the "Min.price" or "Max.price" field.
+3. Click "Apply a filter".
 
+Actual result: the request is processed, and the filtering occurs as if the negative value were valid.
 
----
+Expected result: negative values should be rejected.
 
+**Environment:**
 
-### 🛠 Web application testing:
+Windows 10 Pro Version 22H2
 
+Google Chrome 138.0.7204.101<br>
 
-<div>
-  <img src="https://d33wubrfki0l68.cloudfront.net/38b5c953a4667366685d55db55d057c86db1fc54/a0fdc/static/acae6b24d940347661ca901ea07f47c1/chrome-dev-logo-icon.png" title="devtools" alt="devtools" width="40" height="40"/>&nbsp
-  <img src="https://voyager.postman.com/logo/postman-logo-icon-orange.svg" title="postman" alt="postman" width="40" height="40"/>&nbsp
-  <img src="https://static0.smartbear.co/smartbearbrand/media/images/home/soapui-icon.svg" title="soapui" alt="soapui" width="40" height="40"/>&nbsp
-</div>
+**Attachments**: [authCard.webm]
 
+**Priority**: Higt
 
----
+***
 
+</details>
 
-### 📱 Mobile application testing:
-
-
-<div>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" title="android-studio" alt="android-studio" width="40" height="40"/>&nbsp
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xcode/xcode-original.svg" title="xcode" alt="xcode" width="40" height="40"/>&nbsp
-  <img src="https://cdn.icon-icons.com/icons2/3053/PNG/512/charles_proxy_macos_bigsur_icon_190302.png" title="charles-proxy" alt="charles-proxy" width="40" height="40"/>&nbsp
-  <img src="https://pbs.twimg.com/profile_images/1589614420766126080/slAIVDtr_400x400.jpg" title="proxyman" alt="proxyman" width="40" height="40"/>&nbsp
-</div>
-
-
-
-
----
-
-
-### 💾 Working with data:
-
-
-<div>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" title="mysql" alt="mysql" width="40" height="40"/>&nbsp
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" title="mongodb" alt="mongodb" width="40" height="40"/>&nbsp
-</div>
-
-
----
-
-
-### ✏️ Working with code:
-
-
-<div>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" title="git" alt="git" width="40" height="40"/>&nbsp
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Bash_Logo_Colored.svg/1024px-Bash_Logo_Colored.svg.png?20180723054350" title="bash" alt="bash" width="40" height="40"/>&nbsp
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" title="vscode" alt="vscode" width="40" height="40"/>&nbsp
- 
-</div>
-
-
----
+[Back to top](#up)
