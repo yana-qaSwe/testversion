@@ -260,7 +260,7 @@ Google Chrome 138.0.7204.101<br>
 
 <a name="BUG-2708" />
 <details>
-<summary>BUG-2608: Registration: Invalid password length (16) leads to server error</summary>
+<summary>BUG-2708: Registration: Invalid password length (16) leads to server error</summary>
 
 ***
 
