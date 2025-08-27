@@ -67,7 +67,7 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 |17|	Placeholders: the Min.price and Max.price input fields contain placeholders; the placeholder disappears when the user starts typing; it reappears if the field is cleared; the placeholder looks different from the user-entered data; all form placeholders have a consistent appearance|	PASSED|	-|
 |18|	Spinners: all spinners are displayed when the field is focused; the spinners function correctly|	FAILED	|[BUG-2610](#BUG-2610)|
 |19|	Error messages are positioned according to the design and are fully visible|	PASSED	|	-|
-|20|	The quantity input fields on the product cards are displayed according to the design; negative values or non-numeric values are not accepted|	FAILED|	[BUG-2611](#BUG-2611)|
+|20|	The quantity input fields on the product cards are displayed according to the design; negative values or non-numeric values are not accepted|	FAILED|	[BUG-2611](#BUG-2611), [BUG-2725](#BUG-2725)|
 |21|	The "Add to Cart" buttons on each product card are positioned according to the design and displayed correctly; the button label matches its functionality|	PASSED|	-|
 |22|	Paging design matches the mockup and functions correctly|PASSED|	-|
 |23|	Input fields: allow editing of entered data; field labels correspond to their logic; input data formats meet the requirements|	PASSED|	-|
@@ -77,7 +77,7 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 **2. Test-cases: Registration and Authorization**
 
 <details>
-<summary>ID-1: Registration with valid login and valid password</summary>
+<summary>ID-1: Registration with a valid login and a valid password</summary>
 
 ***
 
@@ -98,7 +98,7 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 </details>
 
 <details>
-<summary>ID-2: Check Registration: Invalid password below minimum length</summary>
+<summary>ID-2: Registration with minimum allowed characters for login</summary>
 
 ***
 
@@ -106,7 +106,49 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
-2 | Enter a login with 2 characters in the "Login" field | lo	| The login is displayed without an error message
+2 | Enter a login with 3 characters in the "Login" field | lo2	| The login is displayed without an error message
+3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| User is successfully registered and redirected to main page
+
+**Result**: FAILED
+
+**ID Bug-report**: [BUG-2709](#BUG-2709)
+
+***
+
+</details>
+
+<details>
+<summary>ID-3: Registration with minimum allowed characters for password</summary>
+
+***
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a valid login in the "Login" field | log1	| The login is displayed without an error message
+3 | Enter a password with 8 characters in the "Password" field | 1234567q	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| User is successfully registered and redirected to main page
+
+**Result**: FAILED
+
+**ID Bug-report**: [BUG-2709](#BUG-2709)
+
+***
+
+</details>
+
+<details>
+<summary>ID-4: Check Registration: Registration with special characters except "_" in the login</summary>
+
+***
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a login with 2 characters in the "Login" field | log2@	| The login is displayed without an error message
 3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
 4 | Click the "Sign in" button | -	| The error message "The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _." is displayed
 
@@ -117,7 +159,26 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 </details>
 
 <details>
-<summary>ID-3: Check Registration: Invalid password above maximum length</summary>
+<summary>ID-5: Check Registration: Invalid login below minimum length</summary>
+
+***
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a login with invalid symbols in the "Login" field | log2@	| The login is displayed without an error message
+3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| The error message "The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _." is displayed
+
+**Result**: PASSED
+
+***
+
+</details>
+
+<details>
+<summary>ID-6: Check Registration: Invalid login above maximum length</summary>
 
 ***
 
@@ -132,6 +193,108 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 **Result**: FAILED
 
 **ID Bug-report**: [BUG-2708](#BUG-2708)
+
+***
+
+</details>
+
+</details>
+
+<details>
+<summary>ID-7: Check Registration: Invalid password below minimum length</summary>
+
+***
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a valid login in the "Login" field | log2_	| The login is displayed without an error message
+3 | Enter a password with 7 characters in the "Password" field | 123456q	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| The error message "The password must be at least 8 characters long, including at least one letter and one number." is displayed
+
+**Result**: PASSED
+
+***
+
+</details>
+
+<details>
+<summary>ID-8: Check Registration: Registration with numeric-only password</summary>
+
+***
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a valid login in the "Login" field | log2	| The login is displayed without an error message
+3 | Enter a numeric-only password in the "Password" field | 123456789	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| The error message "The password must be at least 8 characters long, including at least one letter and one number" is displayed
+
+**Result**: PASSED
+
+***
+
+</details>
+
+<details>
+<summary>ID-9: Check Registration: Registration with alphabetic-only password</summary>
+
+***
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a valid login in the "Login" field | log2	| The login is displayed without an error message
+3 | Enter a alphabetic-only password in the "Password" field | abcdefghi	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| The error message "The password must be at least 8 characters long, including at least one letter and one number" is displayed
+
+**Result**: PASSED
+
+***
+
+</details>
+
+<details>
+<summary>ID-10: Registration with empty fields</summary>
+
+***
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a valid login in the "Login" field | -	| The "Login" field is empty
+3 | Leave the "Password" field empty| -	| The "Password" field is empty
+4 | Click the "Sign in" button | -	| The tooltip "Fill in the field" is displayed
+
+**Result**: PASSED
+
+***
+
+</details>
+
+<details>
+<summary>ID-11: Registration with existing user</summary>
+
+***
+**Pre-conditions:**
+
+User is already registered
+Login: log2_
+Password: 12345678q
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a login from pre-conditions in the "Login" field| log2_ | The login is displayed without an error message
+3 | Enter a password from pre-conditions the "Password" field empty| 12345678q | The password is displayed without an error message
+4 | Click the "Sign in" button | -	| The error message "An account with this login/password already exists" is displayed
+
+**Result**: PASSED
 
 ***
 
@@ -169,7 +332,7 @@ Google Chrome 138.0.7204.101<br>
 
 <a name="BUG-2614" />
 <details>
-<summary>BUG-2614:Pagination is not responsive and shifts off-screen when resizing the layout</summary>
+<summary>BUG-2614: Pagination is not responsive and shifts off-screen when resizing the layout</summary>
 
 ***
 
@@ -228,6 +391,41 @@ Google Chrome 138.0.7204.101<br>
 
 </details>
 
+<a name="BUG-2725" />
+<details>
+<summary>BUG-2725: The user can add a zero quantity of the product to the cart</summary>
+
+***
+**Pre-conditions:**
+
+The user is authorized
+
+**Steps:**
+
+1. Open qa.demoshopping.ru
+2. Navigate to any product
+3. Change the quantity of the product by zero input
+4. Click "Add to cart"
+
+
+**Actual result**: error message is not appeared. The product is added to the cart.
+
+**Expected result**: error message is appeared. The product is not added to the cart.
+
+**Environment:**
+
+Windows 10 Pro Version 22H2
+
+Google Chrome 138.0.7204.101<br>
+
+**Attachments**: [authCard.webm]
+
+**Priority**: Higt
+
+***
+
+</details>
+
 <a name="BUG-2610" />
 <details>
 <summary>BUG-2610: The "Min.price" and "Max.price" input fields accept negative values on the main page</summary>
@@ -260,7 +458,7 @@ Google Chrome 138.0.7204.101<br>
 
 <a name="BUG-2708" />
 <details>
-<summary>BUG-2708: Registration: Invalid password length (16) leads to server error</summary>
+<summary>BUG-2708: Registration: Invalid login length (16) leads to server error</summary>
 
 ***
 
@@ -272,7 +470,7 @@ Google Chrome 138.0.7204.101<br>
 4. Enter a valid password 
 5. Click the “Sign in” button 
 
-**Actual result**: invalid password length (16) leads to server error
+**Actual result**: invalid login length (16) leads to server error
 
 **Expected result**: the user sees the message: “The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _"
 
