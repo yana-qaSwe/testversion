@@ -4,17 +4,16 @@
 The portfolio includes some projects completed during QA Engineer training.
 
 [Web Testing](#web-testing)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 [Mobile Testing](#mobile-testing)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
 
 [API Testing](#api-testing)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 [Database](#data-bases)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
 
 
 ## <a name="web-testing" />Web Testing
@@ -47,8 +46,7 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 
 **1. Check-list for Layout**
 
-| № | Description | Windows 10 Pro Version 22H2
-Google Chrome 138.0.7204.101| ID bag-report |
+| № | Description | Windows 10 Pro Version 22H2 Google Chrome 138.0.7204.101| ID bag-report |
 |:--:|:-----------|:-----:|:-------:|
 |1|After the page loads, there are no errors or warnings in the console|	PASSED| -|
 |2|	The website's favicon is displayed on the browser tab|	FAILED|	[BUG-2608](#BUG-2608)|
