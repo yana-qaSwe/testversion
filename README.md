@@ -85,8 +85,8 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://demoshopping.ru/login | -	| The login page is opened
-2 | Input a valid login in the "Login" field | log2_	| The login is displayed without an error message
-3 | Input a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
+2 | Enter a valid login in the "Login" field | log2_	| The login is displayed without an error message
+3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
 4 | Click the "Sign in" button | -	| User is successfully registered and redirected to main page
 
 **Result**: PASSED
@@ -96,34 +96,42 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 </details>
 
 <details>
-<summary>ID-2: Отображение панели результата расчёта стоимости и времени поездки в режиме "Быстрый"</summary>
+<summary>ID-2: Check Registration: Invalid password below minimum length</summary>
 
 ***
 
-**Предусловие**:
-1. Открыть Яндекс.Маршруты: [https://qa-routes.praktikum-services.ru].
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://demoshopping.ru/login | -	| The login page is opened
+2 | Enter a login with 2 characters in the "Login" field | lo	| The login is displayed without an error message
+3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| The error message "The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _." is displayed
 
-**Шаги**:
-1. Ввести время начала поездки: 12:00.
-2. В поле "Откуда" ввести адрес: Усачева, 3.
-3. В поле "Куда" ввести адрес: Фрунзенская набережная, 46.
-4. Выбрать режим "Быстрый".
-
-**ОР**: В панели результата расчёта отображается информация о поездке.
-
-В левой части панели:
-- <Название вида транспорта> ~ <стоимость> руб.
-- В пути <время> мин.
-- Кнопка действия синего цвета с надписью, соответствующей виду транспорта; например, для такси: "Вызвать такси"
-
-В правой части панели:
-- Картинка вида транспорта
-
-**Окружение**: Yandex.Browser не ниже 20.0, разрешение 800х600; Firefox не ниже 75.0, разрешение 1280х720
-
-**Результат**: FAILED
+**Result**: PASSED
 
 **ID баг-репорта**: [BUG-8351](#BUG-8351)
+
+***
+
+</details>
+
+<details>
+<summary>ID-2: Check Registration: Invalid password above maximum length</summary>
+
+***
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://demoshopping.ru/login | -	| The login page is opened
+2 | Enter a login with 16 characters in the "Login" field | 1234567890Odtcps	| The login is displayed without an error message
+3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| The error message "The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _." is displayed
+
+**Result**: FAILED
+
+**ID баг-репорта**: [BUG-2708](#BUG-2708)
 
 ***
 
@@ -249,5 +257,33 @@ Google Chrome 138.0.7204.101<br>
 ***
 
 </details>
+
+<a name="BUG-2708" />
+<details>
+<summary>BUG-2608: Registration: Invalid password length (16) leads to server error</summary>
+
+***
+
+**Steps:**
+
+1. Open demoshopping.ru.
+2. Click the button “Registration / Log in” 
+3. Enter 16 characters in the login field in the Registration section
+4. Enter a valid password 
+5. Click the “Sign in” button 
+
+**Actual result**: invalid password length (16) leads to server error
+
+**Expected result**: the user sees the message: “The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _"
+
+**Environment:**
+
+Windows 10 Pro Version 22H2
+
+Google Chrome 138.0.7204.101<br>
+
+**Attachments**: [authCard.webm]
+
+**Priority**: High
 
 [Back to top](#up)
