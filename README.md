@@ -80,7 +80,7 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 <details>
 <summary>BUG-2608: The website's favicon isn't displayed on the browser tab</summary>
 
-***
+---
 
 **Steps:**
 
@@ -100,7 +100,7 @@ Google Chrome 138.0.7204.101<br>
 
 **Priority**: Low
 
-***
+---
 
 </details>
 
@@ -108,7 +108,7 @@ Google Chrome 138.0.7204.101<br>
 <details>
 <summary>BUG-2614:Pagination is not responsive and shifts off-screen when resizing the layout</summary>
 
-***
+---
 
 **Steps:**
 
@@ -130,7 +130,7 @@ Google Chrome 138.0.7204.101<br>
 
 **Priority**: Medium
 
-***
+---
 
 </details>
 
@@ -138,7 +138,7 @@ Google Chrome 138.0.7204.101<br>
 <details>
 <summary>BUG-2611: The quantity input fields on the product cards on the main page accept invalid characters</summary>
 
-***
+---
 
 **Steps:**
 
@@ -161,7 +161,7 @@ Google Chrome 138.0.7204.101<br>
 
 **Priority**: Higt
 
-***
+---
 
 </details>
 
@@ -169,7 +169,7 @@ Google Chrome 138.0.7204.101<br>
 <details>
 <summary>BUG-2610: The "Min.price" and "Max.price" input fields accept negative values on the main page</summary>
 
-***
+---
 
 **Steps:**
 
@@ -191,7 +191,7 @@ Google Chrome 138.0.7204.101<br>
 
 **Priority**: Higt
 
-***
+---
 
 </details>
 
