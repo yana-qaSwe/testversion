@@ -84,12 +84,14 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 **Steps**:
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
-1 | Open the https://demoshopping.ru/login | -	| The login page is opened
+1 | Open the https://qa.demoshopping.ru/login | -	| The login page is opened
 2 | Enter a valid login in the "Login" field | log2_	| The login is displayed without an error message
 3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
 4 | Click the "Sign in" button | -	| User is successfully registered and redirected to main page
 
-**Result**: PASSED
+**Result**: FAILED
+
+**ID Bug-report**: [BUG-2709](#BUG-2709)
 
 ***
 
@@ -103,35 +105,33 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 **Steps**:
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
-1 | Open the https://demoshopping.ru/login | -	| The login page is opened
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
 2 | Enter a login with 2 characters in the "Login" field | lo	| The login is displayed without an error message
 3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
 4 | Click the "Sign in" button | -	| The error message "The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _." is displayed
 
 **Result**: PASSED
 
-**ID баг-репорта**: [BUG-8351](#BUG-8351)
-
 ***
 
 </details>
 
 <details>
-<summary>ID-2: Check Registration: Invalid password above maximum length</summary>
+<summary>ID-3: Check Registration: Invalid password above maximum length</summary>
 
 ***
 
 **Steps**:
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
-1 | Open the https://demoshopping.ru/login | -	| The login page is opened
+1 | Open the https://qa.demoshopping.ru/loginn | -	| The login page is opened
 2 | Enter a login with 16 characters in the "Login" field | 1234567890Odtcps	| The login is displayed without an error message
 3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
 4 | Click the "Sign in" button | -	| The error message "The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _." is displayed
 
 **Result**: FAILED
 
-**ID баг-репорта**: [BUG-2708](#BUG-2708)
+**ID Bug-report**: [BUG-2708](#BUG-2708)
 
 ***
 
@@ -147,7 +147,7 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 
 **Steps:**
 
-1. Open demoshopping.ru.
+1. Open qa.demoshopping.ru
 
 **Actual result**: the website's favicon isn't displayed on the browser tab.
 
@@ -175,7 +175,7 @@ Google Chrome 138.0.7204.101<br>
 
 **Steps:**
 
-1. Open Demoshopping.ru
+1. Open qa.demoshopping.ru
 2. Resize the browser window.
 3. Observe the pagination block.
 
@@ -205,12 +205,12 @@ Google Chrome 138.0.7204.101<br>
 
 **Steps:**
 
-1. Open Demoshopping.ru
+1. Open qa.demoshopping.ru
 2. In the quantity input field on any product card, enter invalid characters such as "+", "-", ".", ",'.
-3. Click "Add to card"
+3. Click "Add to cart"
 
 
-**Actual result**: the product was added to the card.
+**Actual result**: the product was added to the cart.
 
 **Expected result**: negative values should be rejected.
 
@@ -236,7 +236,7 @@ Google Chrome 138.0.7204.101<br>
 
 **Steps:**
 
-1. Open Demoshopping.ru
+1. Open qa.demoshopping.ru
 2. Enter -75 in the "Min.price" or "Max.price" field.
 3. Click "Apply a filter".
 
@@ -266,7 +266,7 @@ Google Chrome 138.0.7204.101<br>
 
 **Steps:**
 
-1. Open demoshopping.ru.
+1. Open qa.demoshopping.ru/login
 2. Click the button “Registration / Log in” 
 3. Enter 16 characters in the login field in the Registration section
 4. Enter a valid password 
@@ -275,6 +275,38 @@ Google Chrome 138.0.7204.101<br>
 **Actual result**: invalid password length (16) leads to server error
 
 **Expected result**: the user sees the message: “The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _"
+
+**Environment:**
+
+Windows 10 Pro Version 22H2
+
+Google Chrome 138.0.7204.101<br>
+
+**Attachments**: [authCard.webm]
+
+**Priority**: High
+
+***
+
+</details>
+
+<a name="BUG-2709" />
+<details>
+<summary>BUG-2709: Registration: User is not authorized after registration</summary>
+
+***
+
+**Steps:**
+
+1. Open qa.demoshopping.ru/login
+2. Enter a valid login in the login field in the Registration section
+3. Enter a valid password 
+4. Click the “Sign in” button 
+5. Try to open the "Cart" tab
+
+**Actual result**: the user is not authorized
+
+**Expected result**: The user is authorized and redirected to the main page
 
 **Environment:**
 
