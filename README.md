@@ -85,7 +85,7 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login | -	| The login page is opened
-2 | Enter a valid login in the "Login" field | log2_	| The login is displayed without an error message
+2 | Enter a valid login in the "Login" field | log2_ | The login is displayed without an error message
 3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
 4 | Click the "Sign in" button | -	| User is successfully registered and redirected to main page
 
@@ -148,7 +148,7 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
-2 | Enter a login with 2 characters in the "Login" field | log2@	| The login is displayed without an error message
+2 | Enter a login with special characters except "_" in the "Login" field | log2@	| The login is displayed without an error message
 3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
 4 | Click the "Sign in" button | -	| The error message "The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _." is displayed
 
@@ -167,7 +167,7 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
-2 | Enter a login with invalid symbols in the "Login" field | log2@	| The login is displayed without an error message
+2 | Enter a login with 2 characters in the "Login" field | lo	| The login is displayed without an error message
 3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
 4 | Click the "Sign in" button | -	| The error message "The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _." is displayed
 
@@ -185,7 +185,7 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 **Steps**:
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
-1 | Open the https://qa.demoshopping.ru/loginn | -	| The login page is opened
+1 | Open the https://qa.demoshopping.ru/login | -	| The login page is opened
 2 | Enter a login with 16 characters in the "Login" field | 1234567890Odtcps	| The login is displayed without an error message
 3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
 4 | Click the "Sign in" button | -	| The error message "The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _." is displayed
@@ -266,7 +266,7 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
-2 | Enter a valid login in the "Login" field | -	| The "Login" field is empty
+2 | Leave the "Login" field empty | -	| The "Login" field is empty
 3 | Leave the "Password" field empty| -	| The "Password" field is empty
 4 | Click the "Sign in" button | -	| The tooltip "Fill in the field" is displayed
 
@@ -277,12 +277,12 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 </details>
 
 <details>
-<summary>ID-11: Registration with existing user</summary>
+<summary>ID-11: Registration with an existing user</summary>
 
 ***
 **Pre-conditions:**
 
-User is already registered
+The user is already registered
 Login: log2_
 Password: 12345678q
 
@@ -306,7 +306,7 @@ Password: 12345678q
 ***
 **Pre-conditions:**
 
-User is already registered
+The user is already registered
 Login: log2_
 Password: 12345678q
 
@@ -325,12 +325,12 @@ Password: 12345678q
 </details>
 
 <details>
-<summary>ID-12: Login with an invalid login and a valid password</summary>
+<summary>ID-13: Login with an invalid login and a valid password</summary>
 
 ***
 **Pre-conditions:**
 
-User is already registered
+The user is already registered
 Login: log2_
 Password: 1234578q
 
@@ -353,12 +353,12 @@ Password: 1234578q
 </details>
 
 <details>
-<summary>ID-12: Login with a valid login and an invalid password</summary>
+<summary>ID-14: Login with a valid login and an invalid password</summary>
 
 ***
 **Pre-conditions:**
 
-User is already registered
+The user is already registered
 Login: log2_
 Password: 1234578q
 
@@ -367,12 +367,121 @@ Password: 1234578q
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
 2 | Enter a login from pre-conditions in the "Login" field| log2_ | The login is displayed without an error message
-3 | Enter an invalid password from pre-conditions the "Password" field| 123456789 | The password is displayed without an error message
+3 | Enter an invalid password in the "Password" field| 123456789 | The password is displayed without an error message
 4 | Click the "Log in" button | -	| The error message "Incorrect username or password" is displayed
 
 **Result**: FAILED
 
 **ID Bug-report**: [BUG-2707](#BUG-2707)
+
+***
+
+</details>
+
+<details>
+<summary>ID-15: Login with a non-existent user</summary>
+
+***
+**Pre-conditions:**
+
+The user doesn't exist
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a valid login in the "Login" field| non_ex| The login is displayed without an error message
+3 | Enter a valid password the "Password" field| 1234567nex | The password is displayed without an error message
+4 | Click the "Log in" button | -	| The error message "Incorrect username or password" is displayed
+
+**Result**: FAILED
+
+**ID Bug-report**: [BUG-2707](#BUG-2707)
+
+***
+
+</details>
+
+<details>
+<summary>ID-16: An authorized user can access all functions</summary>
+
+***
+**Pre-conditions:**
+
+The user is authorized
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru| -	| The main page is opened
+2 | Click the "Cart", "Payments" or "History" button | - | The user can access the functions
+
+**Result**: PASSED
+
+***
+
+</details>
+
+<details>
+<summary>ID-17: Verify unauthorized user cannot access "Cart", "Payments" or "History"</summary>
+
+***
+**Pre-conditions:**
+
+The user is unauthorized
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru| -	| The main page is opened
+2 | Click the "Cart", "Payments" or "History" button | - |The authorization message "Please log in https://qa.demoshopping.ru/login to add an item to the cart" is displayed
+
+**Result**: PASSED
+
+***
+
+</details>
+
+<details>
+<summary>ID-18: Redirecting a user to the login page by clicking the authorization message's link</summary>
+
+***
+**Pre-conditions:**
+
+The user is unauthorized
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru| -	| The main page is opened
+2 | Click the "Cart", "Payments" or "History" button | - |The authorization message "Please log in https://qa.demoshopping.ru/login to add an item to the cart" is displayed
+3 | Click the login link in the authorization message | -| The user is redirected to the login page
+
+**Result**: FAILED
+
+**ID Bug-report**: [BUG-2801](#BUG-2801)
+
+***
+
+</details>
+
+<details>
+<summary>ID-19: Log out by clicking logout button</summary>
+
+***
+**Pre-conditions:**
+
+The user is authorized
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru| -	| The main page is opened
+2 | Click the "Log out" button | - | The user is redirected to the login page
+
+**Result**: FAILED
+
+**ID Bug-report**: [BUG-2804](#BUG-2804)
 
 ***
 
@@ -391,9 +500,9 @@ Password: 1234578q
 
 1. Open qa.demoshopping.ru
 
-**Actual result**: the website's favicon isn't displayed on the browser tab.
+**Actual result**: The website's favicon isn't displayed on the browser tab.
 
-**Expected result**: the website's favicon is displayed on the browser tab.
+**Expected result**: The website's favicon is displayed on the browser tab.
 
 **Environment:**
 
@@ -421,9 +530,9 @@ Google Chrome 138.0.7204.101<br>
 2. Resize the browser window.
 3. Observe the pagination block.
 
-**Actual Result**: pagination shifts off-screen and becomes partially hidden.
+**Actual Result**: Pagination shifts off-screen and becomes partially hidden.
 
-**Expected Result**: pagination remains visible and correctly aligned within the viewport.
+**Expected Result**: Pagination remains visible and correctly aligned within the viewport.
 
 **Environment:**
 
@@ -451,13 +560,13 @@ The user is authorized
 **Steps:**
 
 1. Open qa.demoshopping.ru
-2. In the quantity input field on any product card, enter invalid characters such as "+", "-", ".", ",'.
+2. In the quantity field on any product card enter invalid characters such as "+", "-", ".", ",'.
 3. Click "Add to cart"
 
 
-**Actual result**: the product was added to the cart.
+**Actual result**: The product was added to the cart.
 
-**Expected result**: negative values should be rejected.
+**Expected result**: Negative values should be rejected.
 
 **Environment:**
 
@@ -490,9 +599,9 @@ The user is authorized
 4. Click "Add to cart"
 
 
-**Actual result**: error message is not appeared. The product is added to the cart.
+**Actual result**: An error message is not appeared. The product is added to the cart.
 
-**Expected result**: error message is appeared. The product is not added to the cart.
+**Expected result**: An error message is appeared. The product is not added to the cart.
 
 **Environment:**
 
@@ -520,9 +629,9 @@ Google Chrome 138.0.7204.101<br>
 2. Enter -75 in the "Min.price" or "Max.price" field.
 3. Click "Apply a filter".
 
-**Actual result**: the request is processed, and the filtering occurs as if the negative value were valid.
+**Actual result**: The request is processed, and the filtering occurs as if the negative value were valid.
 
-**Expected result**: negative values should be rejected.
+**Expected result**: Negative values should be rejected.
 
 **Environment:**
 
@@ -552,9 +661,9 @@ Google Chrome 138.0.7204.101<br>
 4. Enter a valid password 
 5. Click the “Sign in” button 
 
-**Actual result**: invalid login length (16) leads to server error
+**Actual result**: Invalid login length (16) leads to server error
 
-**Expected result**: the user sees the message: “The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _"
+**Expected result**: The user sees the message: “The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _"
 
 **Environment:**
 
@@ -584,7 +693,7 @@ Google Chrome 138.0.7204.101<br>
 4. Click the “Sign in” button 
 5. Try to open the "Cart" tab
 
-**Actual result**: the user is not authorized
+**Actual result**: The user is not authorized
 
 **Expected result**: The user is authorized and redirected to the main page
 
@@ -604,7 +713,7 @@ Google Chrome 138.0.7204.101<br>
 
 <a name="BUG-2707" />
 <details>
-<summary>BUG-2709: Login: wrong credentials show incorrect error message</summary>
+<summary>BUG-2707: Login: wrong credentials show incorrect error message</summary>
 
 ***
 
@@ -614,9 +723,75 @@ Google Chrome 138.0.7204.101<br>
 2. Enter an invalid login or password in the Login section 
 3. Click the “Log in” button 
 
-**Actual result**: an incorrect message is displayed: “An error occurred while processing the request”
+**Actual result**: An incorrect message is displayed: “An error occurred while processing the request”
 
-**Expected result**: the message displayed should be: “Incorrect username or password” 
+**Expected result**: The message displayed should be: “Incorrect username or password” 
+
+**Environment:**
+
+Windows 10 Pro Version 22H2
+
+Google Chrome 138.0.7204.101<br>
+
+**Attachments**: [authCard.webm]
+
+**Priority**: High
+
+***
+
+</details>
+
+<a name="BUG-2801" />
+<details>
+<summary>BUG-2801: Authorization: Upon clicking the login link, the user is not redirected to the login page</summary>
+
+***
+**Pre-conditions:**
+
+The user is unauthorized
+
+**Steps:**
+
+1. Open qa.demoshopping.ru
+2. Click the "Cart", "Payments" or "History" button  
+3. Click the login link in the authorization message 
+
+**Actual result**: The main page reloads; the user is not redirected to the login page.
+
+**Expected result**: The user should be redirected to the login page 
+
+**Environment:**
+
+Windows 10 Pro Version 22H2
+
+Google Chrome 138.0.7204.101<br>
+
+**Attachments**: [authCard.webm]
+
+**Priority**: High
+
+***
+
+</details>
+
+<a name="BUG-2804" />
+<details>
+<summary>BUG-2804: User can access sensitive data after logging out from Payment page</summary>
+
+***
+**Pre-conditions:**
+
+The user is authorized
+
+**Steps:**
+
+1. Open qa.demoshopping.ru
+2. Click the "Payments" button  
+3. Click "log out" button  
+
+**Actual result**: The user is not redirected to the login page and the page data remains accessible.
+
+**Expected result**: The system reverts to an unauthorized state, and the user is redirected to the login page.
 
 **Environment:**
 
