@@ -4,17 +4,16 @@
 The portfolio includes some projects completed during QA Engineer training.
 
 [Web Testing](#web-testing)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 [Mobile Testing](#mobile-testing)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
 
 [API Testing](#api-testing)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 
 [Database](#data-bases)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
 
 
 ## <a name="web-testing" />Web Testing
@@ -47,8 +46,7 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 
 **1. Check-list for Layout**
 
-| № | Description | Windows 10 Pro Version 22H2
-Google Chrome 138.0.7204.101| ID bag-report |
+| № | Description | Windows 10 Pro Version 22H2 Google Chrome 138.0.7204.101| ID bag-report |
 |:--:|:-----------|:-----:|:-------:|
 |1|After the page loads, there are no errors or warnings in the console|	PASSED| -|
 |2|	The website's favicon is displayed on the browser tab|	FAILED|	[BUG-2608](#BUG-2608)|
@@ -69,300 +67,428 @@ Google Chrome 138.0.7204.101| ID bag-report |
 |17|	Placeholders: the Min.price and Max.price input fields contain placeholders; the placeholder disappears when the user starts typing; it reappears if the field is cleared; the placeholder looks different from the user-entered data; all form placeholders have a consistent appearance|	PASSED|	-|
 |18|	Spinners: all spinners are displayed when the field is focused; the spinners function correctly|	FAILED	|[BUG-2610](#BUG-2610)|
 |19|	Error messages are positioned according to the design and are fully visible|	PASSED	|	-|
-|20|	The quantity input fields on the product cards are displayed according to the design; negative values or non-numeric values are not accepted|	FAILED|	[BUG-2611](#BUG-2611)|
+|20|	The quantity input fields on the product cards are displayed according to the design; negative values or non-numeric values are not accepted|	FAILED|	[BUG-2611](#BUG-2611), [BUG-2725](#BUG-2725)|
 |21|	The "Add to Cart" buttons on each product card are positioned according to the design and displayed correctly; the button label matches its functionality|	PASSED|	-|
 |22|	Paging design matches the mockup and functions correctly|PASSED|	-|
 |23|	Input fields: allow editing of entered data; field labels correspond to their logic; input data formats meet the requirements|	PASSED|	-|
 |24|	Error messages are positioned according to the design and fully visible|	PASSED|-|
-|25|	The page layout adapts to screen size changes|	FAILED|	[BUG-2614](#BUG-2614git )|
+|25|	The page layout adapts to screen size changes|	FAILED|	[BUG-2614](#BUG-2614)|
 
-**2. Test-cases for Test Registration and Login Modules**
+**2. Test-cases: Registration and Authorization**
 
 <details>
-<summary>ID-1: Отображение панели результата расчёта стоимости и времени поездки в режиме "Оптимальный"</summary>
+<summary>ID-1: Registration with a valid login and a valid password</summary>
 
 ***
 
-**Предусловие**:
-1. Открыть Яндекс.Маршруты: [https://qa-routes.praktikum-services.ru].
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login | -	| The login page is opened
+2 | Enter a valid login in the "Login" field | log2_ | The login is displayed without an error message
+3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| User is successfully registered and redirected to main page
 
-**Шаги**:
-1. Ввести время начала поездки: 12:00.
-2. В поле "Откуда" ввести адрес: Усачева, 3.
-3. В поле "Куда" ввести адрес: Фрунзенская набережная, 46.
-4. Выбрать режим "Оптимальный".
+**Result**: FAILED
 
-**ОР**: В панели результата расчёта отображается информация о поездке.
-
-В левой части панели:
-- <Название вида транспорта> ~ <стоимость> руб.
-- В пути <время> мин.
-- Кнопка действия синего цвета с надписью, соответствующей виду транспорта; например, для такси: "Вызвать такси"
-
-В правой части панели:
-- Картинка вида транспорта
-
-**Окружение**: Yandex.Browser не ниже 20.0, разрешение 800х600; Firefox не ниже 75.0, разрешение 1280х720
-
-**Результат**: FAILED
-
-**ID баг-репорта**: [BUG-8351](#BUG-8351)
+**ID Bug-report**: [BUG-2709](#BUG-2709)
 
 ***
 
 </details>
 
 <details>
-<summary>ID-2: Отображение панели результата расчёта стоимости и времени поездки в режиме "Быстрый"</summary>
+<summary>ID-2: Registration with minimum allowed characters for login</summary>
 
 ***
 
-**Предусловие**:
-1. Открыть Яндекс.Маршруты: [https://qa-routes.praktikum-services.ru].
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a login with 3 characters in the "Login" field | lo2	| The login is displayed without an error message
+3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| User is successfully registered and redirected to main page
 
-**Шаги**:
-1. Ввести время начала поездки: 12:00.
-2. В поле "Откуда" ввести адрес: Усачева, 3.
-3. В поле "Куда" ввести адрес: Фрунзенская набережная, 46.
-4. Выбрать режим "Быстрый".
+**Result**: FAILED
 
-**ОР**: В панели результата расчёта отображается информация о поездке.
-
-В левой части панели:
-- <Название вида транспорта> ~ <стоимость> руб.
-- В пути <время> мин.
-- Кнопка действия синего цвета с надписью, соответствующей виду транспорта; например, для такси: "Вызвать такси"
-
-В правой части панели:
-- Картинка вида транспорта
-
-**Окружение**: Yandex.Browser не ниже 20.0, разрешение 800х600; Firefox не ниже 75.0, разрешение 1280х720
-
-**Результат**: FAILED
-
-**ID баг-репорта**: [BUG-8351](#BUG-8351)
+**ID Bug-report**: [BUG-2709](#BUG-2709)
 
 ***
 
 </details>
 
 <details>
-<summary>ID-3: Отображение панели результата расчёта стоимости и времени поездки в режиме "Свой" для каршеринга</summary>
+<summary>ID-3: Registration with minimum allowed characters for password</summary>
 
 ***
 
-**Предусловие**:
-1. Открыть Яндекс.Маршруты: [https://qa-routes.praktikum-services.ru].
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a valid login in the "Login" field | log1	| The login is displayed without an error message
+3 | Enter a password with 8 characters in the "Password" field | 1234567q	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| User is successfully registered and redirected to main page
 
-**Шаги**:
-1. Ввести время начала поездки: 12:00.
-2. В поле "Откуда" ввести адрес: Усачева, 3.
-3. В поле "Куда" ввести адрес: Фрунзенская набережная, 46.
-4. Выбрать режим "Свой".
-5. Выбрать вид транспорта "Каршеринг".
+**Result**: FAILED
 
-**ОР**: В панели результата расчёта отображается информация о поездке.
-
-В левой части панели:
-- Каршеринг ~ <стоимость> руб.
-- В пути <время> мин.
-- Кнопка действия синего цвета с надписью, соответствующей виду транспорта.
-
-В правой части панели:
-- Картинка каршеринга
-
-**Окружение**: Yandex.Browser не ниже 20.0, разрешение 800х600; Firefox не ниже 75.0, разрешение 1280х720
-
-**Результат**: FAILED
-
-**ID баг-репорта**: [BUG-8351](#BUG-8351), [BUG-8368](#BUG-8368)
+**ID Bug-report**: [BUG-2709](#BUG-2709)
 
 ***
 
 </details>
 
 <details>
-<summary>ID-4: Отображение панели результата расчёта стоимости и времени поездки в режиме "Свой" для пешехода</summary>
+<summary>ID-4: Check Registration: Registration with special characters except "_" in the login</summary>
 
 ***
 
-**Предусловие**:
-1. Открыть Яндекс.Маршруты: [https://qa-routes.praktikum-services.ru].
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a login with special characters except "_" in the "Login" field | log2@	| The login is displayed without an error message
+3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| The error message "The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _." is displayed
 
-**Шаги**:
-1. Ввести время начала поездки: 12:00.
-2. В поле "Откуда" ввести адрес: Усачева, 3.
-3. В поле "Куда" ввести адрес: Фрунзенская набережная, 46.
-4. Выбрать режим "Свой".
-5. Выбрать вид транспорта "Пешком".
-
-**ОР**: В панели результата расчёта отображается информация о поездке.
-
-В левой части панели:
-- Пешеход Бесплатно.
-- В пути <время> мин.
-- Кнопка действия синего цвета с надписью, соответствующей виду транспорта.
-
-В правой части панели:
-- Картинка пешехода
-
-**Окружение**: Yandex.Browser не ниже 20.0, разрешение 800х600; Firefox не ниже 75.0, разрешение 1280х720
-
-**Результат**: FAILED
-
-**ID баг-репорта**: [BUG-8351](#BUG-8351)
+**Result**: PASSED
 
 ***
 
 </details>
 
 <details>
-<summary>ID-5: Отображение панели результата расчёта стоимости и времени поездки в режиме "Свой" для такси</summary>
+<summary>ID-5: Check Registration: Invalid login below minimum length</summary>
 
 ***
 
-**Предусловие**:
-1. Открыть Яндекс.Маршруты: [https://qa-routes.praktikum-services.ru].
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a login with 2 characters in the "Login" field | lo	| The login is displayed without an error message
+3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| The error message "The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _." is displayed
 
-**Шаги**:
-1. Ввести время начала поездки: 12:00.
-2. В поле "Откуда" ввести адрес: Усачева, 3.
-3. В поле "Куда" ввести адрес: Фрунзенская набережная, 46.
-4. Выбрать режим "Свой".
-5. Выбрать вид транспорта "Такси".
-
-**ОР**: В панели результата расчёта отображается информация о поездке.
-
-В левой части панели:
-- Такси ~ <стоимость> руб.
-- В пути <время> мин.
-- Кнопка действия синего цвета с надписью "Вызвать такси".
-
-В правой части панели:
-- Картинка такси
-
-**Окружение**: Yandex.Browser не ниже 20.0, разрешение 800х600; Firefox не ниже 75.0, разрешение 1280х720
-
-**Результат**: FAILED
-
-**ID баг-репорта**: [BUG-8351](#BUG-8351)
+**Result**: PASSED
 
 ***
 
 </details>
 
 <details>
-<summary>ID-6: Отображение панели результата расчёта стоимости и времени поездки в режиме "Свой" для велосипеда</summary>
+<summary>ID-6: Check Registration: Invalid login above maximum length</summary>
 
 ***
 
-**Предусловие**:
-1. Открыть Яндекс.Маршруты: [https://qa-routes.praktikum-services.ru].
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login | -	| The login page is opened
+2 | Enter a login with 16 characters in the "Login" field | 1234567890Odtcps	| The login is displayed without an error message
+3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| The error message "The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _." is displayed
 
-**Шаги**:
-1. Ввести время начала поездки: 12:00.
-2. В поле "Откуда" ввести адрес: Усачева, 3.
-3. В поле "Куда" ввести адрес: Фрунзенская набережная, 46.
-4. Выбрать режим "Свой".
-5. Выбрать вид транспорта "Велосипед".
+**Result**: FAILED
 
-**ОР**: В панели результата расчёта отображается информация о поездке.
+**ID Bug-report**: [BUG-2708](#BUG-2708)
 
-В левой части панели:
-- Велосипед ~ <стоимость> руб.
-- В пути <время> мин.
-- Кнопка действия синего цвета с надписью "Вызвать такси".
+***
 
-В правой части панели:
-- Картинка велосипеда
+</details>
 
-**Окружение**: Yandex.Browser не ниже 20.0, разрешение 800х600; Firefox не ниже 75.0, разрешение 1280х720
+</details>
 
-**Результат**: FAILED
+<details>
+<summary>ID-7: Check Registration: Invalid password below minimum length</summary>
 
-**ID баг-репорта**: [BUG-8351](#BUG-8351)
+***
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a valid login in the "Login" field | log2_	| The login is displayed without an error message
+3 | Enter a password with 7 characters in the "Password" field | 123456q	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| The error message "The password must be at least 8 characters long, including at least one letter and one number." is displayed
+
+**Result**: PASSED
 
 ***
 
 </details>
 
 <details>
-<summary>ID-7: Отображение панели результата расчёта стоимости и времени поездки в режиме "Свой" для самоката</summary>
+<summary>ID-8: Check Registration: Registration with numeric-only password</summary>
 
 ***
 
-**Предусловие**:
-1. Открыть Яндекс.Маршруты: [https://qa-routes.praktikum-services.ru].
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a valid login in the "Login" field | log2	| The login is displayed without an error message
+3 | Enter a numeric-only password in the "Password" field | 123456789	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| The error message "The password must be at least 8 characters long, including at least one letter and one number" is displayed
 
-**Шаги**:
-1. Ввести время начала поездки: 12:00.
-2. В поле "Откуда" ввести адрес: Усачева, 3.
-3. В поле "Куда" ввести адрес: Фрунзенская набережная, 46.
-4. Выбрать режим "Свой".
-5. Выбрать вид транспорта "Самокат".
-
-**ОР**: В панели результата расчёта отображается информация о поездке.
-
-В левой части панели:
-- Самокат ~ <стоимость> руб.
-- В пути <время> мин.
-- Кнопка действия синего цвета с надписью "Вызвать такси".
-
-В правой части панели:
-- Картинка самоката
-
-**Окружение**: Yandex.Browser не ниже 20.0, разрешение 800х600; Firefox не ниже 75.0, разрешение 1280х720
-
-**Результат**: FAILED
-
-**ID баг-репорта**: [BUG-8351](#BUG-8351)
+**Result**: PASSED
 
 ***
 
 </details>
 
 <details>
-<summary>ID-8: Отображение панели результата расчёта стоимости и времени поездки в режиме "Свой" для своего автомобиля</summary>
+<summary>ID-9: Check Registration: Registration with alphabetic-only password</summary>
 
 ***
 
-**Предусловие**:
-1. Открыть Яндекс.Маршруты: [https://qa-routes.praktikum-services.ru].
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a valid login in the "Login" field | log2	| The login is displayed without an error message
+3 | Enter a alphabetic-only password in the "Password" field | abcdefghi	| The password is displayed without an error message
+4 | Click the "Sign in" button | -	| The error message "The password must be at least 8 characters long, including at least one letter and one number" is displayed
 
-**Шаги**:
-1. Ввести время начала поездки: 12:00.
-2. В поле "Откуда" ввести адрес: Усачева, 3.
-3. В поле "Куда" ввести адрес: Фрунзенская набережная, 46.
-4. Выбрать режим "Свой".
-5. Выбрать вид транспорта "Свой автомобиль".
-
-**ОР**: В панели результата расчёта отображается информация о поездке.
-
-В левой части панели:
-- Авто ~ <стоимость> руб.
-- В пути <время> мин.
-- Кнопка действия синего цвета с надписью "Вызвать такси".
-
-В правой части панели:
-- Картинка автомобиля
-
-**Окружение**: Yandex.Browser не ниже 20.0, разрешение 800х600; Firefox не ниже 75.0, разрешение 1280х720
-
-**Результат**: FAILED
-
-**ID баг-репорта**: [BUG-8351](#BUG-8351)
+**Result**: PASSED
 
 ***
 
 </details>
 
-**5-6. Bug-reports**
+<details>
+<summary>ID-10: Registration with empty fields</summary>
 
-Команда протестировала вёрстку и логику интерфейса. Мы проверили соответствие вёрстки макету и реализацию фронтенда: работу полей ввода, панелей выбора режимов и транспорта, а также отображение расчёта времени и стоимости поездки в панели результата и точек и линий маршрута на карте.
+***
 
-Среди найденных ошибок нет ни одного блокера и есть только два критических бага. Однако есть довольно много ошибок с низким и незначительным приоритетом, которые относятся к удобству использования сервиса и его имиджу. Команда рекомендует исправить ошибки перед передачей продукта пользователям.
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Leave the "Login" field empty | -	| The "Login" field is empty
+3 | Leave the "Password" field empty| -	| The "Password" field is empty
+4 | Click the "Sign in" button | -	| The tooltip "Fill in the field" is displayed
 
-Всего мы нашли 23 бага и дали одну рекомендацию по улучшению сервиса. Вот список **баг-репортов**:
+**Result**: PASSED
+
+***
+
+</details>
+
+<details>
+<summary>ID-11: Registration with an existing user</summary>
+
+***
+**Pre-conditions:**
+
+The user is already registered
+Login: log2_
+Password: 12345678q
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a login from pre-conditions in the "Login" field| log2_ | The login is displayed without an error message
+3 | Enter a password from pre-conditions the "Password" field| 12345678q | The password is displayed without an error message
+4 | Click the "Sign in" button | -	| The error message "An account with this login/password already exists" is displayed
+
+**Result**: PASSED
+
+***
+
+</details>
+
+<details>
+<summary>ID-12: Login with valid data</summary>
+
+***
+**Pre-conditions:**
+
+The user is already registered
+Login: log2_
+Password: 12345678q
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a login from pre-conditions in the "Login" field| log2_ | The login is displayed without an error message
+3 | Enter a password from pre-conditions the "Password" field| 12345678q | The password is displayed without an error message
+4 | Click the "Log in" button | -	| The user is redirected to the homepage
+
+**Result**: PASSED
+
+***
+
+</details>
+
+<details>
+<summary>ID-13: Login with an invalid login and a valid password</summary>
+
+***
+**Pre-conditions:**
+
+The user is already registered
+Login: log2_
+Password: 1234578q
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter an invalid login in the "Login" field| log | The login is displayed without an error message
+3 | Enter a password from pre-conditions the "Password" field| 12345678q | The password is displayed without an error message
+4 | Click the "Log in" button | -	| The error message "Incorrect username or password" is displayed
+
+**Result**: FAILED
+
+**ID Bug-report**: [BUG-2707](#BUG-2707)
+
+***
+
+</details>
+
+</details>
+
+<details>
+<summary>ID-14: Login with a valid login and an invalid password</summary>
+
+***
+**Pre-conditions:**
+
+The user is already registered
+Login: log2_
+Password: 1234578q
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a login from pre-conditions in the "Login" field| log2_ | The login is displayed without an error message
+3 | Enter an invalid password in the "Password" field| 123456789 | The password is displayed without an error message
+4 | Click the "Log in" button | -	| The error message "Incorrect username or password" is displayed
+
+**Result**: FAILED
+
+**ID Bug-report**: [BUG-2707](#BUG-2707)
+
+***
+
+</details>
+
+<details>
+<summary>ID-15: Login with a non-existent user</summary>
+
+***
+**Pre-conditions:**
+
+The user doesn't exist
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
+2 | Enter a valid login in the "Login" field| non_ex| The login is displayed without an error message
+3 | Enter a valid password the "Password" field| 1234567nex | The password is displayed without an error message
+4 | Click the "Log in" button | -	| The error message "Incorrect username or password" is displayed
+
+**Result**: FAILED
+
+**ID Bug-report**: [BUG-2707](#BUG-2707)
+
+***
+
+</details>
+
+<details>
+<summary>ID-16: An authorized user can access all functions</summary>
+
+***
+**Pre-conditions:**
+
+The user is authorized
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru| -	| The main page is opened
+2 | Click the "Cart", "Payments" or "History" button | - | The user can access the functions
+
+**Result**: PASSED
+
+***
+
+</details>
+
+<details>
+<summary>ID-17: Verify unauthorized user cannot access "Cart", "Payments" or "History"</summary>
+
+***
+**Pre-conditions:**
+
+The user is unauthorized
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru| -	| The main page is opened
+2 | Click the "Cart", "Payments" or "History" button | - |The authorization message "Please log in https://qa.demoshopping.ru/login to add an item to the cart" is displayed
+
+**Result**: PASSED
+
+***
+
+</details>
+
+<details>
+<summary>ID-18: Redirecting a user to the login page by clicking the authorization message's link</summary>
+
+***
+**Pre-conditions:**
+
+The user is unauthorized
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru| -	| The main page is opened
+2 | Click the "Cart", "Payments" or "History" button | - |The authorization message "Please log in https://qa.demoshopping.ru/login to add an item to the cart" is displayed
+3 | Click the login link in the authorization message | -| The user is redirected to the login page
+
+**Result**: FAILED
+
+**ID Bug-report**: [BUG-2801](#BUG-2801)
+
+***
+
+</details>
+
+<details>
+<summary>ID-19: Log out by clicking logout button</summary>
+
+***
+**Pre-conditions:**
+
+The user is authorized
+
+**Steps**:
+№ | Action| Input data | Expected result
+:--:|:--|:---|:----
+1 | Open the https://qa.demoshopping.ru| -	| The main page is opened
+2 | Click the "Log out" button | - | The user is redirected to the login page
+
+**Result**: FAILED
+
+**ID Bug-report**: [BUG-2804](#BUG-2804)
+
+***
+
+</details>
+
+
+**3. Bug-reports**
 
 <a name="BUG-2608" />
 <details>
@@ -372,11 +498,11 @@ Google Chrome 138.0.7204.101| ID bag-report |
 
 **Steps:**
 
-1. Open demoshopping.ru.
+1. Open qa.demoshopping.ru
 
-Actual result: the website's favicon isn't displayed on the browser tab.
+**Actual result**: The website's favicon isn't displayed on the browser tab.
 
-Expected result: the website's favicon is displayed on the browser tab.
+**Expected result**: The website's favicon is displayed on the browser tab.
 
 **Environment:**
 
@@ -394,19 +520,19 @@ Google Chrome 138.0.7204.101<br>
 
 <a name="BUG-2614" />
 <details>
-<summary>BUG-2614:Pagination is not responsive and shifts off-screen when resizing the layout</summary>
+<summary>BUG-2614: Pagination is not responsive and shifts off-screen when resizing the layout</summary>
 
 ***
 
 **Steps:**
 
-1. Open Demoshopping.ru
+1. Open qa.demoshopping.ru
 2. Resize the browser window.
 3. Observe the pagination block.
 
-Actual Result: pagination shifts off-screen and becomes partially hidden.
+**Actual Result**: Pagination shifts off-screen and becomes partially hidden.
 
-Expected Result: pagination remains visible and correctly aligned within the viewport.
+**Expected Result**: Pagination remains visible and correctly aligned within the viewport.
 
 **Environment:**
 
@@ -424,20 +550,58 @@ Google Chrome 138.0.7204.101<br>
 
 <a name="BUG-2611" />
 <details>
-<summary>BUG-2611: The quantity input fields on the product cards on the main page accept invalid characters</summary>
+<summary>BUG-2611: The quantity fields on the product cards on the main page accept invalid characters</summary>
 
 ***
+**Pre-conditions:**
+
+The user is authorized
 
 **Steps:**
 
-1. Open Demoshopping.ru
-2. In the quantity input field on any product card, enter invalid characters such as "+", "-", ".", ",'.
-3. Click "Add to card"
+1. Open qa.demoshopping.ru
+2. In the quantity field on any product card enter invalid characters such as "+", "-", ".", ",'.
+3. Click "Add to cart"
 
 
-Actual result: the product was added to the card.
+**Actual result**: The product was added to the cart.
 
-Expected result: negative values should be rejected.
+**Expected result**: Negative values should be rejected.
+
+**Environment:**
+
+Windows 10 Pro Version 22H2
+
+Google Chrome 138.0.7204.101<br>
+
+**Attachments**: [authCard.webm]
+
+**Priority**: Higt
+
+***
+
+</details>
+
+<a name="BUG-2725" />
+<details>
+<summary>BUG-2725: The user can add a zero quantity of the product to the cart</summary>
+
+***
+**Pre-conditions:**
+
+The user is authorized
+
+**Steps:**
+
+1. Open qa.demoshopping.ru
+2. Navigate to any product
+3. Change the quantity of the product by zero input
+4. Click "Add to cart"
+
+
+**Actual result**: An error message is not appeared. The product is added to the cart.
+
+**Expected result**: An error message is appeared. The product is not added to the cart.
 
 **Environment:**
 
@@ -461,13 +625,13 @@ Google Chrome 138.0.7204.101<br>
 
 **Steps:**
 
-1. Open Demoshopping.ru
+1. Open qa.demoshopping.ru
 2. Enter -75 in the "Min.price" or "Max.price" field.
 3. Click "Apply a filter".
 
-Actual result: the request is processed, and the filtering occurs as if the negative value were valid.
+**Actual result**: The request is processed, and the filtering occurs as if the negative value were valid.
 
-Expected result: negative values should be rejected.
+**Expected result**: Negative values should be rejected.
 
 **Environment:**
 
@@ -483,1895 +647,165 @@ Google Chrome 138.0.7204.101<br>
 
 </details>
 
-[Back to top](#up)
-
-## <a name="mobile-testing" />Тестирование мобильных приложений
-
-### Задание
-
-1. Проанализируй требования к мобильному приложению Яндекс.Метро.
-
-2. Напиши чек-лист для тестирования мобильного приложения на часть требований, **выделенных жирным шрифтом**.
-3. Протестируй мобильное приложение в эмуляторе с помощью Android Studio или на своём Android-устройстве и заведи баг-репорты. Скачай готовящуюся к релизу версию приложения [тут](https://code.s3.yandex.net/qa/files/yandexmetro-android-v3.6.apk).
-
-Чтобы проверить, что обновление происходит корректно, скачай предыдущую версию [тут](https://code.s3.yandex.net/qa/files/yandexmetro-android-v2.1.apk).
-
-4. Напиши отчет о тестировании. Что можешь рассказать команде о статусе протестированной части продукта?
-
+<a name="BUG-2708" />
 <details>
-<summary>Требования к мобильному приложению Метро</summary>
+<summary>BUG-2708: Registration: Invalid login length (16) leads to server error</summary>
 
 ***
 
-Яндекс.Метро — сервис, который позволяет ориентироваться в метро с помощью мобильного устройства. В приложении есть схема метро, которая помогает построить маршрут и оценить время в пути; в приложении появляются актуальные уведомления о работе станций метро и изменениях графика работы.
+**Steps:**
 
-**1. Список маршрутов**
+1. Open qa.demoshopping.ru/login
+2. Click the button “Registration / Log in” 
+3. Enter 16 characters in the login field in the Registration section
+4. Enter a valid password 
+5. Click the “Sign in” button 
 
-1.1. В карточке маршрута отображается:
-- Информация маршрута - логотипы метро и номера линий метро, также сохраняется последовательность пересадок (если есть).
-- Количество пересадок (если есть).
-- Временной интервал маршрута - время в пути, время отправления и прибытия.
-- Кнопка Закрыть.
-- **Кнопка Детали маршрута.**
-- Поля Откуда (начальный пункт) и Куда (пункт назначения) (поля должны валидироваться).
+**Actual result**: Invalid login length (16) leads to server error
 
-![Карточка маршрута](https://code.s3.yandex.net/qa/schemes/project-3-sprint1.png)
+**Expected result**: The user sees the message: “The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _"
 
-1.2. Сброс маршрута.
+**Environment:**
 
-- Закрыть маршрут можно только тапом на крестик в карточке маршрута. При закрытии маршрута в поле ввода Откуда сохраняется начальная станция из последнего маршрута Поле ввода Куда и маршрут на схеме сбрасывается, выделение станций пропадает (кроме начальной станции).
-- **Если текущее время превышает время окончания маршрута, то временной интервал маршрута обновляется.**
+Windows 10 Pro Version 22H2
 
-**2. Выбор станции**
+Google Chrome 138.0.7204.101<br>
 
-2.1. Станцию можно выбрать несколькими способами:
-- **Тапом на схеме.**
-- **По иконке i из разных карточек. Если из поиска выбрать станцию тапом на i и закрыть карточку, должен происходить возврат на экран поиска.**
+**Attachments**: [authCard.webm]
 
-![Карточка станции](https://code.s3.yandex.net/qa/schemes/project-3-sprint3.png)
-
-- **Найти в поиске и нажать на станцию.**
-
-2.2. Если станция выбрана, всегда выполняются следующие действия:
-- **Точка станции на схеме уменьшается.**
-- **На точке станции появляется пин цвета линии или специальный пин для закрытой станции.**
-- **Выбранная станция сохраняется в истории: при нажатии на поле Откуда или Куда раскрывается список, содержащий станции, которые пользователь выбирал ранее. Список должен сохраниться и в новой версии приложения.**
-- **Шрифт названия станции становится bold.**
-
-**3. Детали маршрута**
-
-3.1. Переход к карточке
-
-**Детали маршрута открываются двумя способами:**
-
-- **По тапу на кнопку Деталей маршрута в карточке маршрута.**
-- **По свайпу списка маршрутов вверх (только для смартфонов в портретной ориентации).**
-
-3.2. Отображение
-
-В карточке отображается:
-
-- Временной интервал маршрута:
-  - время в пути;
-  - время отправления;
-  - время прибытия;
-  - отрезки пересадок между участками маршрута.
-- Кнопка Закрыть.
-- Участки маршрута, разделенные сообщениями о пересадке.
-- Сообщение об удобных вагонах для посадки.
-- Картинка с указанием удобных вагонов.
-- Станции прибытия и отправления.
-- Пересадочные станции.
-- Промежуточные станции (если на участке больше одной промежуточной станции отображаются свернутым списком).
-- Рядом с каждой станцией, кроме промежуточных отображается кнопка «i» для перехода в карточку станции.
-- Станция, расположенная в начале каждого участка содержит название, номер линии и иконку сервиса.
-- Для каждой станции может отображаться событие.
-- **При смене ориентации с портретной на ландшафтную детали маршрута отображаются в левой части экрана.**
-
-3.3. Закрытие карточки
-
-Закрыть карточку можно также двумя способами:
-
-- По тапу на кнопку Закрыть.
-- Свайпом вниз.
-
-При закрытии деталей остается открытым список маршрутов, положение списка сохраняется, построенный маршрут не сбрасывается.
-
-**4. Уведомление об ошибке**
-
-- **При отсутствии интернет-соединения появляется уведомление об ошибке.**
-
-**5. Логика для альбомной ориентации**
-
-- **Все карточки и поля поиска отображаются в левой части экрана.**
-- Карточки открываются на всю высоту экрана.
-- Карточки станции закрываются при взаимодействии со схемой.
-- Маршруты отображаются в списке в левой части экрана.
-- Баннер на маршруте отображается сверху списка маршрута, если доступно достаточно места
-- **При смене ориентации экрана масштаб построенного маршрута не должен увеличиться или уменьшиться.**
-- Список маршрутов не сворачивается при тапе на ячейку маршрута. Выбранный маршрут выделяется.
-- При построении маршрута маршрут вписывается в свободную область справа.
-- При тапе на станцию на схеме (с и без маршрута) происходит минимальный подскролл схемы, чтобы вместить пин.
-- При выборе станции по иконке i происходит минимальный подскролл схемы, чтобы вместить пин.
-- Карточки сохраняют своё положение при переходе из портретной ориентации в ландшафтную (и обратно): свёрнутые остаются свёрнутыми, открытые — открытыми, среднее положение переходит в среднее.
-- Карточка Настроек открывается по центру экрана на некоторых девайсах (iPad и некоторые iPhone)
-
-**6. Лонгтап по станции**
-
-- **При нажатии на станцию при помощи лонгтапа открывается карточка станции с кнопками «Отсюда»/«Сюда».**
-
-![Лонгтап](https://code.s3.yandex.net/qa/files/project-3-sprint41.png)
-
-- **Схема не должна смещаться вверх/вниз/влево/вправо при лонгтапе по станции.**
-
-**7. Скролл схемы при помощи лонгтапа**
-
-Чтобы воспроизвести скролл схемы при помощи лонгтапа — сделай лонгтап по станции и удерживая палец, переводи фокус на другие станции.
-
-- **При скролле лонгтапом можно выбрать нужную станцию, при этом схема остаётся неподвижной.**
-- **При попадании на область клика точки станции или её названия на точку ставится пин, точка станции уменьшается, название станции выделяется жирным шрифтом, появляется карточка станции.**
-- **Пин на станции и выделение станции пропадает, когда она не попадает в зону клика.**
-- При дальнейшем движении шапка карточки станции остаётся неподвижной, и в ней меняются названия станций и сервисов. При этом карточка сохраняет минимальное состояние.
-- **Если движение заканчивается на пустой области, карточка станции закрывается.**
+**Priority**: High
 
 ***
 
 </details>
 
-### Решение
-
-**1-2. Чек-лист мобильного приложения**
-
-| № | Описание  | Статус  | ID баг-репорта  | Требование  |
-|:-:|:----------|:-------:|:----------:|:----------:|
-|1 | Обновление с предыдущей версии приложения происходит корректно | PASSED		
-|2 | В карточке маршрута отображается кнопка Детали маршрута в соответствии с макетом | PASSED	 | |	1.1
-|3 | Если текущее время превышает время окончания маршрута, то временной интервал маршрута обновляется | FAILED | [BUG-10736](#BUG-10736) | 1.2
-| |	**Способы выбора станции:**| | |2.1|
-|4 | Тапом на схеме | PASSED		
-|5 | По иконке i из разных карточек | PASSED	
-|6 | Если из поиска выбрать станцию тапом на i и закрыть карточку, должен происходить возврат на экран поиска | FAILED | [BUG-10738](#BUG-10738)
-|7 | Найти в поиске и нажать на станцию | PASSED
-| |	**Если станция выбрана, всегда выполняются следующие действия:**| | | 2.2 |
-|8 | Точка станции на схеме уменьшается | PASSED
-|9 | На точке станции появляется пин цвета линии или специальный пин для закрытой станции | PASSED		
-|10 | Выбранная станция сохраняется в истории: при нажатии на поле Откуда или Куда раскрывается список, содержащий станции, которые пользователь выбирал ранее | FAILED | [BUG-10740](#BUG-10740)
-|11 | Список станций в истории должен сохраняться в новой версии приложения | PASSED		
-|12 | Шрифт названия станции становится bold | PASSED
-| | **Переход к карточке маршрута. Детали маршрута открываются двумя способами:**| | |3.1|
-|13 | По тапу на кнопку Деталей маршрута в карточке маршрута | PASSED		
-|14 | По свайпу списка маршрутов вверх (только для смартфонов в портретной ориентации) | PASSED		
-|15 | При смене ориентации с портретной на ландшафтную детали маршрута в карточке отображаются в левой части экрана | FAILED | [BUG-10929](#BUG-10929) | 3.2
-| |	**Уведомление об ошибке:**| | |4 |	
-|16 | При отсутствии интернет-соединения появляется уведомление об ошибке | FAILED | [BUG-10741](#BUG-10741)
-| |	**Альбомная ориентация:**| | |5|
-|17 | Все карточки и поля поиска отображаются в левой части экрана | PASSED		
-|18 | При смене ориентации экрана масштаб построенного маршрута не должен увеличиться или уменьшиться | FAILED | [BUG-10743](#BUG-10743)
-| | **Лонг-тап по станции:**| | | 6|
-|19 | При нажатии на станцию при помощи лонг-тапа открывается карточка станции с кнопками «Отсюда»/«Сюда» | FAILED | [BUG-10744](#BUG-10744)
-|20 | Схема не должна смещаться вверх/вниз/влево/вправо при лонгтапе по станции | FAILED | [BUG-10746](#BUG-10746)	
-| | **Скролл схемы при помощи лонг-тапа:** | | |	7|
-|21 | При скролле лонгтапом можно выбрать нужную станцию, при этом схема остаётся неподвижной | PASSED		
-|22 | При попадании на область клика точки станции или её названия на точку ставится пин, точка станции уменьшается, название станции выделяется жирным шрифтом, появляется карточка станции | PASSED
-|23 | Пин на станции и выделение станции пропадает, когда она не попадает в зону клика | FAILED | [BUG-10747](#BUG-10747)	
-|24 | Если движение заканчивается на пустой области, карточка станции закрывается | PASSED		
-
-**3-4. Отчёт о тестировании**
-
-Команда протестировала часть требований к мобильному приложению Яндекс.Метро.
-
-Мы проверили корректность обновления с предыдущей версии, отображение кнопки "Детали маршрута", способы выбора станций, выполнение действий при выбранной станции, варианты перехода к карточке маршрута, уведомление об ошибке при отсутствии интернет-соединения, сохранение списка станций в истории, поведение приложения при смене ориентации экрана и при использовании лонгтапа.
-
-Среди найденных ошибок есть одна критическая, остальные имеют средний и низкий приоритет. Команда рекомендует исправить ошибки перед передачей продукта пользователям. Всего мы нашли 9 багов, вот список баг-репортов:
-
-<a name="BUG-10736" />
+<a name="BUG-2709" />
 <details>
-<summary>BUG-10736: Временной интервал маршрута в карточке маршрута не обновляется, если текущее время превышает время окончания маршрута</summary>
+<summary>BUG-2709: Registration: User is not authorized after registration</summary>
 
 ***
 
-**Предусловия:**
+**Steps:**
 
-1. Скачать версию Яндекс.Метро по ссылке [https://code.s3.yandex.net/qa/files/yandexmetro-android-v3.6.apk].
-2. Установить и запустить приложение, при запросе выдать все разрешения.
-3. Выбрать любой город, например: Санкт-Петербург.
+1. Open qa.demoshopping.ru/login
+2. Enter a valid login in the login field in the Registration section
+3. Enter a valid password 
+4. Click the “Sign in” button 
+5. Try to open the "Cart" tab
 
-**Шаги воспроизведения:**
+**Actual result**: The user is not authorized
 
-1. Тапом выбрать любую станцию, например: Парк Победы.
-2. В появившейся карточке станции нажать кнопку Отсюда.
-3. Тапом выбрать другую станцию, например: Горьковская.
-4. В появившейся карточке станции нажать кнопку Сюда.
+**Expected result**: The user is authorized and redirected to the main page
 
-Ожидаемый результат: появится карточка маршрута с указанием времени начала и окончания маршрута.
+**Environment:**
 
-Фактический результат: появилась карточка маршрута с указанием времени начала и окончания маршрута.
+Windows 10 Pro Version 22H2
 
-5. Дождаться, когда текущее время превысит время окончания маршрута.
+Google Chrome 138.0.7204.101<br>
 
-Ожидаемый результат: если текущее время превышает время окончания маршрута, то временной интервал маршрута автоматически обновляется.
+**Attachments**: [authCard.webm]
 
-Фактический результат: если текущее время превышает время окончания маршрута, временной интервал маршрута не обновляется.
-
-**Окружение:**
-
-Xiaomi Redmi 4X<br>
-Android 7.1.2<br>
-Яндекс.Метро 3.6
-
-**Скриншот:** [https://yadi.sk/i/Bj41vqKK-lpvgw]
-
-**Приоритет:** средний
+**Priority**: High
 
 ***
 
 </details>
 
-<a name="BUG-10738" />
+<a name="BUG-2707" />
 <details>
-<summary>BUG-10738: При выборе станции в поиске тапом на i и закрытии карточки происходит возврат на главный экран</summary>
+<summary>BUG-2707: Login: wrong credentials show incorrect error message</summary>
 
 ***
 
-**Предусловия:**
+**Steps:**
 
-1. Скачать версию Яндекс.Метро по ссылке [https://code.s3.yandex.net/qa/files/yandexmetro-android-v3.6.apk].
-2. Установить и запустить приложение, при запросе выдать все разрешения.
-3. Выбрать любой город (например, Санкт-Петербург).
+1. Open qa.demoshopping.ru/login
+2. Enter an invalid login or password in the Login section 
+3. Click the “Log in” button 
 
-**Шаги воспроизведения:**
+**Actual result**: An incorrect message is displayed: “An error occurred while processing the request”
 
-1. Нажать в поле Откуда.
-2. В появившемся окне поиска набрать название станции, например: Невский проспект.
-3. Открыть карточку станции тапом на i.
-4. Закрыть карточку станции тапом на крестик.
+**Expected result**: The message displayed should be: “Incorrect username or password” 
 
-Ожидаемый результат: если из поиска выбрать станцию тапом на i и закрыть карточку, должен происходить возврат на экран поиска.
+**Environment:**
 
-Фактический результат: происходит возврат на главный экран.
+Windows 10 Pro Version 22H2
 
-**Окружение:**
+Google Chrome 138.0.7204.101<br>
 
-Xiaomi Redmi 4X<br>
-Android 7.1.2<br>
-Яндекс.Метро 3.6
+**Attachments**: [authCard.webm]
 
-**Скринкаст:** [https://yadi.sk/i/YQNOsAuS4mRW0A]
-
-**Приоритет:** низкий
+**Priority**: High
 
 ***
 
 </details>
 
-<a name="BUG-10740" />
+<a name="BUG-2801" />
 <details>
-<summary>BUG-10740: Выбранная станция сохраняется в истории только после того, как с ней был построен маршрут</summary>
+<summary>BUG-2801: Authorization: Upon clicking the login link, the user is not redirected to the login page</summary>
 
 ***
+**Pre-conditions:**
 
-**Предусловия:**
+The user is unauthorized
 
-1. Скачать версию Яндекс.Метро по ссылке [https://code.s3.yandex.net/qa/files/yandexmetro-android-v3.6.apk].
-2. Установить и запустить приложение, при запросе выдать все разрешения.
-3. Выбрать любой город (например, Санкт-Петербург).
+**Steps:**
 
-**Шаги воспроизведения:**
+1. Open qa.demoshopping.ru
+2. Click the "Cart", "Payments" or "History" button  
+3. Click the login link in the authorization message 
 
-1. Тапнуть на любую станцию, например: Горьковская.
-2. В появившейся карточке станции нажать кнопку Отсюда.
+**Actual result**: The main page reloads; the user is not redirected to the login page.
 
-Ожидаемый результат: в поле Откуда отобразится название выбранной станции.
+**Expected result**: The user should be redirected to the login page 
 
-Фактический результат: в поле Откуда отображается название выбранной станции.
+**Environment:**
 
-3. Удалить станцию из поля Откуда тапом на крестик.
-4. Нажать в поле Откуда.
+Windows 10 Pro Version 22H2
 
-Ожидаемый результат: выбранная станция сохраняется в истории: при нажатии на поле Откуда раскрывается список, содержащий станции, которые пользователь выбирал ранее.
+Google Chrome 138.0.7204.101<br>
 
-**Фактический результат: станция в истории не сохраняется**.
+**Attachments**: [authCard.webm]
 
-5. Повторить шаги 1-4 для поля Куда.
-
-Ожидаемый результат: выбранная станция сохраняется в истории: при нажатии на поле Куда раскрывается список, содержащий станции, которые пользователь выбирал ранее.
-
-**Фактический результат: станция в истории не сохраняется.**
-
-6. Построить маршрут:
-* Тапнуть на любую станцию, например: Горьковская.
-* В появившейся карточке станции нажать кнопку Отсюда.
-* Тапнуть на любую станцию, например: Парк Победы.
-* В появившейся карточке станции нажать кнопку Сюда.
-
-7. Закрыть появившуюся карточку маршрута.
-8. Очистить поля Отсюда и Сюда.
-9. Нажать в поле Откуда.
-
-Ожидаемый результат: выбранная станция сохраняется в истории: при нажатии на поле Откуда раскрывается список, содержащий станции, которые пользователь выбирал ранее.
-
-Фактический результат: станция сохраняется в истории.
-
-10. Закрыть окно поиска.
-11. Нажать в поле Куда.
-
-Ожидаемый результат: выбранная станция сохраняется в истории: при нажатии на поле Откуда раскрывается список, содержащий станции, которые пользователь выбирал ранее.
-
-Фактический результат: станция сохраняется в истории.
-
-**Окружение:**
-
-Xiaomi Redmi 4X<br>
-Android 7.1.2<br>
-Яндекс.Метро 3.6
-
-**Скринкаст:** [https://yadi.sk/i/6af9il09c7npQg]
-
-**Приоритет:** средний
+**Priority**: High
 
 ***
 
 </details>
 
-<a name="BUG-10741" />
+<a name="BUG-2804" />
 <details>
-<summary>BUG-10741: При отсутствии интернет-соединения не появляется уведомление об ошибке</summary>
+<summary>BUG-2804: User can access sensitive data after logging out from Payment page</summary>
 
 ***
+**Pre-conditions:**
 
-**Предусловия:**
+The user is authorized
 
-1. Скачать версию Яндекс.Метро по ссылке [https://code.s3.yandex.net/qa/files/yandexmetro-android-v3.6.apk].
-2. Установить и запустить приложение.
-3. Выбрать любой город (например, Санкт-Петербург).
+**Steps:**
 
-**Шаги воспроизведения:**
+1. Open qa.demoshopping.ru
+2. Click the "Payments" button  
+3. Click "log out" button  
 
-1. Отключить Wi-Fi и мобильный интернет.
+**Actual result**: The user is not redirected to the login page and the page data remains accessible.
 
-Ожидаемый результат: при отсутствии интернет-соединения появляется уведомление об ошибке.
+**Expected result**: The system reverts to an unauthorized state, and the user is redirected to the login page.
 
-Фактический результат: уведомление об ошибке не появляется.
+**Environment:**
 
-**Окружение:**
+Windows 10 Pro Version 22H2
 
-Xiaomi Redmi 4X<br>
-Android 7.1.2<br>
-Яндекс.Метро 3.6
+Google Chrome 138.0.7204.101<br>
 
-**Скринкаст:** [https://yadi.sk/i/WUTZOzOATAKZjA]
+**Attachments**: [authCard.webm]
 
-**Приоритет:** средний
+**Priority**: High
 
 ***
 
 </details>
 
-<a name="BUG-10743" />
-<details>
-<summary>BUG-10743: При смене ориентации экрана меняется масштаб построенного маршрута</summary>
-
-***
-
-**Предусловия:**
-
-1. Скачать версию Яндекс.Метро по ссылке [https://code.s3.yandex.net/qa/files/yandexmetro-android-v3.6.apk].
-2. Установить и запустить приложение.
-3. Выбрать любой город (например, Санкт-Петербург).
-
-**Шаги воспроизведения:**
-
-1. В портретной ориентации экрана построить маршрут:
-* Тапнуть на любую станцию, например: Горьковская.
-* В появившейся карточке станции нажать кнопку Отсюда.
-* Тапнуть на любую станцию, например: Парк Победы.
-* В появившейся карточке станции нажать кнопку Сюда.
-2. Сменить ориентацию экрана на альбомную.
-3. Сменить ориентацию экрана на портретную.
-
-Ожидаемый результат: при смене ориентации экрана масштаб построенного маршрута не должен увеличиться или уменьшиться.
-
-Фактический результат: при смене ориентации экрана с портретной на альбомную масштаб построенного маршрута немного уменьшается, а с альбомной на портретную - немного увеличивается.
-
-**Окружение:**
-
-Xiaomi Redmi 4X<br>
-Android 7.1.2<br>
-Яндекс.Метро 3.6
-
-**Скринкаст:** [https://yadi.sk/i/lsnfIF5-T2h3yA]
-
-**Приоритет:** низкий
-
-***
-
-</details>
-
-<a name="BUG-10744" />
-<details>
-<summary>BUG-10744: При лонгтапе на станцию карточка станции иногда открывается некорректно</summary>
-
-***
-
-**Описание:** при нажатии на станцию лонгтапом открытие карточки станции происходит по-разному: она может открыться корректно; может открыться частично (видно только название станции, номер и название линии); может открыться частично, оставаться открытой при удержании пальца на станции и закрыться, если палец отпустить. Иногда фокус с выбранной станции перескакивает на соседнюю/несколько соседних и открывается карточка соседней станции.
-
-**Предусловия:**
-
-1. Скачать версию Яндекс.Метро по ссылке [https://code.s3.yandex.net/qa/files/yandexmetro-android-v3.6.apk].
-2. Установить и запустить приложение.
-3. Выбрать любой город (например, Санкт-Петербург).
-
-**Шаги воспроизведения:**
-
-1. Лонгтапом выбирать разные станции на схеме.
-
-Ожидаемый результат: при нажатии на станцию при помощи лонгтапа открывается карточка станции с кнопками «Отсюда»/«Сюда»
-
-Фактический результат: при лонгтапе на станцию карточка станции иногда открывается некорректно
-
-**Окружение:**
-
-Xiaomi Redmi 4X<br>
-Android 7.1.2<br>
-Яндекс.Метро 3.6
-
-**Скринкаст:** [https://yadi.sk/i/5oA-6pbNXQx2ZQ]
-
-**Приоритет:** критичный
-
-***
-
-</details>
-
-<a name="BUG-10746" />
-<details>
-<summary>BUG-10746: При лонгтапе по станции схема иногда смещается</summary>
-
-***
-
-**Предусловия:**
-
-1. Скачать версию Яндекс.Метро по ссылке [https://code.s3.yandex.net/qa/files/yandexmetro-android-v3.6.apk].
-2. Установить и запустить приложение.
-3. Выбрать любой город (например, Санкт-Петербург).
-
-**Шаги воспроизведения:**
-
-1. Лонгтапом выбирать разные станции на схеме.
-
-Ожидаемый результат: схема не должна смещаться вверх/вниз/влево/вправо при лонгтапе по станции.
-
-Фактический результат: иногда схема смещается.
-
-**Окружение:**
-
-Xiaomi Redmi 4X<br>
-Android 7.1.2<br>
-Яндекс.Метро 3.6
-
-**Скринкаст:** [https://yadi.sk/i/ymC79S_BpaLkdQ]
-
-**Приоритет:** низкий
-
-***
-
-</details>
-
-<a name="BUG-10747" />
-<details>
-<summary>BUG-10747: При скролле схемы лонгтапом пин на станции и выделение станции не пропадает, когда она не попадает в зону клика</summary>
-
-***
-
-**Описание:** при скролле схемы лонгтапом пин на станции и выделение станции не пропадает, когда она не попадает в зону клика. Чтобы воспроизвести скролл схемы при помощи лонгтапа, нужно сделать лонгтап по станции и, удерживая палец, переводить фокус на другие станции.
-
-**Предусловия:**
-
-1. Скачать версию Яндекс.Метро по ссылке [https://code.s3.yandex.net/qa/files/yandexmetro-android-v3.6.apk].
-2. Установить и запустить приложение.
-3. Выбрать любой город (например, Санкт-Петербург).
-
-**Шаги воспроизведения:**
-
-1. Выполнить скролл схемы лонгтапом.
-
-Ожидаемый результат: пин на станции и выделение станции пропадает, когда она не попадает в зону клика
-
-Фактический результат: пин на станции и выделение станции не пропадает, когда она не попадает в зону клика
-
-**Окружение:**
-
-Xiaomi Redmi 4X<br>
-Android 7.1.2<br>
-Яндекс.Метро 3.6
-
-**Скринкаст:** [https://yadi.sk/i/hqgm5pfb27mdRg]
-
-**Приоритет:** низкий
-
-***
-
-</details>
-
-<a name="BUG-10929" />
-<details>
-<summary>BUG-10929: При смене ориентации с портретной на ландшафтную карточка деталей маршрута закрывается</summary>
-
-***
-
-**Предусловия:**
-
-1. Скачать версию Яндекс.Метро по ссылке [https://code.s3.yandex.net/qa/files/yandexmetro-android-v3.6.apk].
-2. Установить и запустить приложение.
-3. Выбрать любой город (например, Санкт-Петербург).
-
-**Шаги воспроизведения:**
-
-1. В портретной ориентации экрана построить маршрут:
-* Тапнуть на любую станцию, например: Горьковская.
-* В появившейся карточке станции нажать кнопку Отсюда.
-* Тапнуть на любую станцию, например: Парк Победы.
-* В появившейся карточке станции нажать кнопку Сюда.
-2. Открыть карточку деталей маршрута.
-3. Сменить ориентацию экрана на ландшафтную.
-
-Ожидаемый результат: при смене ориентации с портретной на ландшафтную детали маршрута в карточке отображаются в левой части экрана.
-
-Фактический результат: при смене ориентации с портретной на ландшафтную карточка деталей маршрута закрывается.
-
-**Окружение:**
-
-Xiaomi Redmi 4X<br>
-Android 7.1.2<br>
-Яндекс.Метро 3.6
-
-**Скринкаст:** [https://yadi.sk/i/_IELHx4FzryPEA]
-
-**Приоритет:** средний
-
-***
-
-</details>
 
 [Back to top](#up)
-
-## <a name="api-testing" />Тестирование API
-
-### Задание
-
-1. Проанализируй требования к API бэкенда Яндекс.Метро.
-
-2. Протестируй API бэкенда Яндекс.Метро:
-
-  2.1. по чек-листу из шаблона;
-  
-  2.2. по инструкции.
-
-<details>
-<summary>Инструкция для тестирования API</summary>
-
-***
-
-- Зайди в postman.
-- Получи список схем из запроса «/list».
-- Составь таблицу в третьей вкладке шаблона, сопоставив каждому городу его id.
-- Дополни чек-лист для запроса «/events». Убедись, что для каждого id возвращается ответ согласно требованиям.
-- Проверь корректность работы запроса «/events».
-
-***
-
-</details>
-
-В процессе тестирования отмечай результаты выполнения теста: PASSED или FAILED. Если тест со статусом FAILED, заведи баг-репорт в Яндекс.Трекере в очереди BUG и вписывай ID в соответствующую таблицу результатов.
-
-3. Напиши отчет о тестировании. Что можешь рассказать команде о статусе протестированной части продукта?
-
-<details>
-<summary>Требования к API Метро</summary>
-
-***
-
-Метро использует API "metrokit-service". Это API для библиотеки MetroKit.
-
-Функциональность metrokit-service включает:
-
-- Доступ к полному списку схем — GET /v1/list/
-- Доступ к cписку актуальных событий для выбранной схемы — GET /v1/events/
-
-**GET /v1/list/**
-
-GET на URI: [https://metrokit-service.maps.yandex.net/v1/list]
-
-Ответ — полный список схем по всем городам. Ответ всегда в формате JSON.
-
-Пример структуры ответа Москвы.
-
-```bash
-        {
-            "id": "sc34974011",
-            "name": {
-                "en": "Moscow",
-                "ru": "Москва",
-                "tr": "Moskova",
-                "uk": "Москва"
-            },
-            "size": {
-                "packed": 369292,
-                "unpacked": 3001856
-            },
-            "tags": [
-                "published"
-            ],
-            "aliases": [
-                "moscow"
-            ],
-            "logoUrl": "https://avatars.mds.yandex.net/get-bunker/128809/6f088274a46aee3df308423d222eb36906825cb7/orig",
-            "version": "2e5e649",
-            "geoRegion": {
-                "delta": {
-                    "lat": 0.32158,
-                    "lon": 0.439453
-                },
-                "center": {
-                    "lat": 55.743347,
-                    "lon": 37.617188
-                }
-            },
-            "countryCode": "RU",
-            "defaultAlias": "moscow"
-        }
-```
-
-**GET /v1/events/**
-
-GET на URI: [https://metrokit-service.maps.yandex.net/v1/events]
-
-Параметр: [scheme_id=\<id>]
-
-Пример: [https://metrokit-service.maps.yandex.net/v1/events?scheme_id=sc34974011]
-
-Ответ — список событий для выбранной схемы. Ответ всегда в формате JSON.
-
-Если событие присутствует, ответ имеет такую структуру. Например, для Москвы с id = sc34974011:
-
-```bash
-    "events": {
-        "type": "IndexedCollection",
-        "items": [
-            {
-                "id": "ev-76c50f2d-9c3d-4835-ac73-a0544b1b308e",
-                "schedule": {
-                    "to": "2019-10-25T23:10:00+03:00",
-                    "from": "2019-03-30T01:00:00+03:00",
-                    "type": "Interval"
-                },
-                "title": {
-                    "en": "No trains to Kakhovskaya station",
-                    "ru": "Поезда не ходят до «Каховской»"
-                },
-                "description": {
-                    "en": "Station closure",
-                    "ru": "Закрытие станции"
-                },
-                "changeIds": [
-                    "ch-feed3c7d-d35e-4481-87a4-7c141e1c96c0"
-                ]
-            }
-  }
-```
-
-Если события отсутствуют, список может быть пустым, но должен возвращаться в формате JSON. Например, для Хельсинки с id = sc38955480:
-
-```bash
-{
-    "events": {
-        "type": "IndexedCollection",
-        "items": []
-    },
-    "changes": {
-        "type": "IndexedCollection",
-        "items": []
-    }
-}
-```
-
-***
-
-</details>
-
-### Решение
-
-<details>
-<summary><strong>1. Данные схем</strong></summary>
-
-***
-
-| Город  | ID схемы  |
-|:----------|:----------|
-|Новосибирск    | sc02877545    |
-|Москва	    | sc34974011    |
-|Киев	    | sc21078879    |
-|Сан-Франциско	    | sc99912    |
-|Алматы	    | sc37730841    |
-|Хельсинки	    | sc38955480    |
-|Лиссабон	    | sc39559734    |
-|Днепр	    | sc47063979    |
-|Дубай	    | sc19930717    |
-|Бухарест	    | sc66937172    |
-|Афины	    | sc92836217    |
-|София	    | sc29665623    |
-|Казань	    | sc63288776    |
-|Минск	    | sc31709615    |
-|Вена	    | sc52507030    |
-|Харьков	    | sc12039691    |
-|Милан	    | sc999    |
-|Будапешт	    | sc04704892    |
-|Ташкент	    | sc19351236    |
-|Тбилиси	    | sc46903964    |
-|Варшава	    | sc12943371    |
-|Волгоград	    | sc03517743    |
-|Санкт-Петербург	    | sc60983525    |
-|Ереван	    | sc95957238    |
-|Прага	    | sc20559874    |
-|Екатеринбург	    | sc58473698    |
-|Баку	    | sc54283234    |
-|Самара	    | sc33333931    |
-|Стамбул	    | sc97451070    |
-|Нижний Новгород	    | sc77792237    |
-|Рим	    | sc68078330    |
-
-***
-
-</details>
-
-**2. Чек-лист API**
-
-| № | Описание  | Статус  | ID баг-репорта  |
-|:----------:|:----------|:----------:|:----------:|
-| | **для запроса "/list"** 
-|1 | ответ на запрос возвращает 200 ОК | PASSED
-|2 | ответ на запрос в формате JSON | PASSED	
-|3 | структура ответа для Минска совпадает со структурой в требованиях | PASSED	
-|4 | структура ответа для Афин совпадает со структурой в требованиях | PASSED	
-|5 | структура ответа для Киева совпадает со структурой в требованиях | PASSED	
-|6 | структура ответа для Казани совпадает со структурой в требованиях | PASSED	
-|7 | структура ответа для Рима совпадает со структурой в требованиях | PASSED	
-| | **для запроса "/events"** 
-8 | структура ответа для id=sc02877545 совпадает со структурой в требованиях | PASSED	
-9 | структура ответа для id=sc34974011 совпадает со структурой в требованиях | PASSED	
-10 | структура ответа для id=sc21078879 совпадает со структурой в требованиях | PASSED	
-11 | структура ответа для id=sc99912 совпадает со структурой в требованиях | FAILED | [BUG-10766](#BUG-10766)
-12 | структура ответа для id=sc37730841 совпадает со структурой в требованиях | PASSED	
-13 | структура ответа для id=sc38955480 совпадает со структурой в требованиях | PASSED	
-14 | структура ответа для id=sc39559734 совпадает со структурой в требованиях | PASSED	
-15 | структура ответа для id=sc47063979 совпадает со структурой в требованиях | PASSED	
-16 | структура ответа для id=sc19930717 совпадает со структурой в требованиях | PASSED	
-17 | структура ответа для id=sc66937172 совпадает со структурой в требованиях | FAILED | [BUG-10769](#BUG-10769)
-18 | структура ответа для id=sc92836217 совпадает со структурой в требованиях | FAILED | [BUG-10770](#BUG-10770)
-19 | структура ответа для id=sc29665623 совпадает со структурой в требованиях | FAILED | [BUG-10771](#BUG-10771)
-20 | структура ответа для id=sc63288776 совпадает со структурой в требованиях | PASSED	
-21 | структура ответа для id=sc31709615 совпадает со структурой в требованиях | PASSED	
-22 | структура ответа для id=sc52507030 совпадает со структурой в требованиях | FAILED | [BUG-10773](#BUG-10773)
-23 | структура ответа для id=sc12039691 совпадает со структурой в требованиях | PASSED	
-24 | структура ответа для id=sc999 совпадает со структурой в требованиях | FAILED | [BUG-10775](#BUG-10775)
-25 | структура ответа для id=sc04704892 совпадает со структурой в требованиях | PASSED	
-26 | структура ответа для id=sc19351236 совпадает со структурой в требованиях | PASSED	
-27 | структура ответа для id=sc46903964 совпадает со структурой в требованиях | PASSED	
-28 | структура ответа для id=sc12943371 совпадает со структурой в требованиях | PASSED	
-29 | структура ответа для id=sc03517743 совпадает со структурой в требованиях | PASSED	
-30 | структура ответа для id=sc60983525 совпадает со структурой в требованиях | PASSED	
-31 | структура ответа для id=sc95957238 совпадает со структурой в требованиях | PASSED	
-32 | структура ответа для id=sc20559874 совпадает со структурой в требованиях | FAILED | [BUG-10776](#BUG-10776)
-33 | структура ответа для id=sc58473698 совпадает со структурой в требованиях | PASSED	
-34 | структура ответа для id=sc54283234 совпадает со структурой в требованиях | PASSED	
-35 | структура ответа для id=sc33333931 совпадает со структурой в требованиях | PASSED	
-36 | структура ответа для id=sc97451070 совпадает со структурой в требованиях | PASSED	
-37 | структура ответа для id=sc77792237 совпадает со структурой в требованиях | PASSED	
-38 | структура ответа для id=sc68078330 совпадает со структурой в требованиях | PASSED	
-
-**3. Отчёт о тестировании**
-
-Команда протестировала API бэкенда Яндекс.Метро.
-
-Мы проверили структуру ответа на запрос /list для некоторых городов и структуру ответа на запрос /events для всех схем городов.
-
-Среди найденных ошибок нет блокеров и критических, все они имеют средний приоритет. Команда рекомендует исправить ошибки перед передачей продукта пользователям. Всего мы нашли 7 багов, вот список баг-репортов:
-
-<a name="BUG-10766" />
-<details>
-<summary>BUG-10766: При запросе списка событий /events для схемы с id=sc99912 структура ответа не совпадает с требованиями</summary>
-
-***
-
-**Шаги воспроизведения:**
-
-1. В Postman создать и отправить GET-запрос на URI: [https://metrokit-service.maps.yandex.net/v1/events?scheme_id=sc99912].
-2. Посмотреть ответ - список событий для схемы с id=sc99912 (Сан-Франциско).
-
-Ожидаемый результат:
-1. Статус ответа: 200 OK.
-2. Ответ возвращается в формате JSON, структура ответа для id=sc99912 совпадает со структурой в требованиях.
-Пример структуры ответа:
-
-```
-{
-    "events": {
-        "type": "IndexedCollection",
-        "items": [
-            {
-                "id": "ev-76c50f2d-9c3d-4835-ac73-a0544b1b308e",
-                "schedule": {
-                    "to": "2019-10-25T23:10:00+03:00",
-                    "from": "2019-03-30T01:00:00+03:00",
-                    "type": "Interval"
-                },
-                "title": {
-                    "en": "No trains to Kakhovskaya station",
-                    "ru": "Поезда не ходят до «Каховской»"
-                },
-                "description": {
-                    "en": "Station closure",
-                    "ru": "Закрытие станции"
-                },
-                "changeIds": [
-                    "ch-feed3c7d-d35e-4481-87a4-7c141e1c96c0"
-                ]
-            }
-  } 
-```
-
-3. Если события отсутствуют, список может быть пустым, но должен возвращаться в формате JSON.
-Пример структуры ответа:
-
-```
-{
-    "events": {
-        "type": "IndexedCollection",
-        "items": []
-    },
-    "changes": {
-        "type": "IndexedCollection",
-        "items": []
-    }
-}
-```
-
-Фактический результат:
-1. Статус ответа: 404 Not Found.
-2. Структура ответа не совпадает с требованиями: Body ответа пустое.
-3. Ответ возвращается в формате Text.
-
-**Окружение:**
-
-macOs 10.15.2<br>
-Postman 7.22.1<br>
-API metrokit-service
-
-**Скриншот:** [https://yadi.sk/i/Q39JhIx4tKU-YQ]
-
-**Приоритет:** средний
-
-***
-
-</details>
-
-<a name="BUG-10769" />
-<details>
-<summary>BUG-10769: При запросе списка событий /events для схемы с id=sc66937172 структура ответа не совпадает с требованиями</summary>
-
-***
-
-**Шаги воспроизведения:**
-
-1. В Postman создать и отправить GET-запрос на URI: [https://metrokit-service.maps.yandex.net/v1/events?scheme_id=sc66937172].
-2. Посмотреть ответ - список событий для схемы с id=sc66937172 (Бухарест).
-
-Ожидаемый результат:
-1. Статус ответа: 200 OK.
-2. Ответ возвращается в формате JSON, структура ответа для id=sc66937172 совпадает со структурой в требованиях.
-Пример структуры ответа:
-
-```
-{
-    "events": {
-        "type": "IndexedCollection",
-        "items": [
-            {
-                "id": "ev-76c50f2d-9c3d-4835-ac73-a0544b1b308e",
-                "schedule": {
-                    "to": "2019-10-25T23:10:00+03:00",
-                    "from": "2019-03-30T01:00:00+03:00",
-                    "type": "Interval"
-                },
-                "title": {
-                    "en": "No trains to Kakhovskaya station",
-                    "ru": "Поезда не ходят до «Каховской»"
-                },
-                "description": {
-                    "en": "Station closure",
-                    "ru": "Закрытие станции"
-                },
-                "changeIds": [
-                    "ch-feed3c7d-d35e-4481-87a4-7c141e1c96c0"
-                ]
-            }
-  } 
-```
-
-3. Если события отсутствуют, список может быть пустым, но должен возвращаться в формате JSON.
-Пример структуры ответа:
-
-```
-{
-    "events": {
-        "type": "IndexedCollection",
-        "items": []
-    },
-    "changes": {
-        "type": "IndexedCollection",
-        "items": []
-    }
-}
-```
-
-Фактический результат:
-1. Статус ответа: 404 Not Found.
-2. Структура ответа не совпадает с требованиями: Body ответа пустое.
-3. Ответ возвращается в формате Text.
-
-**Окружение:**
-
-macOs 10.15.2<br>
-Postman 7.22.1<br>
-API metrokit-service
-
-**Скриншот:** [https://yadi.sk/i/oDdjegyhnIq8Tg]
-
-**Приоритет:** средний
-
-***
-
-</details>
-
-<a name="BUG-10770" />
-<details>
-<summary>BUG-10770: При запросе списка событий /events для схемы с id=sc92836217 структура ответа не совпадает с требованиями</summary>
-
-***
-
-**Шаги воспроизведения:**
-
-1. В Postman создать и отправить GET-запрос на URI: [https://metrokit-service.maps.yandex.net/v1/events?scheme_id=sc92836217].
-2. Посмотреть ответ - список событий для схемы с id=sc92836217 (Афины).
-
-Ожидаемый результат:
-1. Статус ответа: 200 OK.
-2. Ответ возвращается в формате JSON, структура ответа для id=sc92836217 совпадает со структурой в требованиях.
-Пример структуры ответа:
-
-```
-{
-    "events": {
-        "type": "IndexedCollection",
-        "items": [
-            {
-                "id": "ev-76c50f2d-9c3d-4835-ac73-a0544b1b308e",
-                "schedule": {
-                    "to": "2019-10-25T23:10:00+03:00",
-                    "from": "2019-03-30T01:00:00+03:00",
-                    "type": "Interval"
-                },
-                "title": {
-                    "en": "No trains to Kakhovskaya station",
-                    "ru": "Поезда не ходят до «Каховской»"
-                },
-                "description": {
-                    "en": "Station closure",
-                    "ru": "Закрытие станции"
-                },
-                "changeIds": [
-                    "ch-feed3c7d-d35e-4481-87a4-7c141e1c96c0"
-                ]
-            }
-  } 
-```
-
-3. Если события отсутствуют, список может быть пустым, но должен возвращаться в формате JSON.
-Пример структуры ответа:
-
-```
-{
-    "events": {
-        "type": "IndexedCollection",
-        "items": []
-    },
-    "changes": {
-        "type": "IndexedCollection",
-        "items": []
-    }
-}
-```
-
-Фактический результат:
-1. Статус ответа: 404 Not Found.
-2. Структура ответа не совпадает с требованиями: Body ответа пустое.
-3. Ответ возвращается в формате Text.
-
-**Окружение:**
-
-macOs 10.15.2<br>
-Postman 7.22.1<br>
-API metrokit-service
-
-**Скриншот:** [https://yadi.sk/i/NgCePxnySF7-fg]
-
-**Приоритет:** средний
-
-***
-
-</details>
-
-<a name="BUG-10771" />
-<details>
-<summary>BUG-10771: При запросе списка событий /events для схемы с id=sc29665623 структура ответа не совпадает с требованиями</summary>
-
-***
-
-**Шаги воспроизведения:**
-
-1. В Postman создать и отправить GET-запрос на URI: [https://metrokit-service.maps.yandex.net/v1/events?scheme_id=sc29665623].
-2. Посмотреть ответ - список событий для схемы с id=sc29665623 (София).
-
-Ожидаемый результат:
-1. Статус ответа: 200 OK.
-2. Ответ возвращается в формате JSON, структура ответа для id=sc29665623 совпадает со структурой в требованиях.
-Пример структуры ответа:
-
-```
-{
-    "events": {
-        "type": "IndexedCollection",
-        "items": [
-            {
-                "id": "ev-76c50f2d-9c3d-4835-ac73-a0544b1b308e",
-                "schedule": {
-                    "to": "2019-10-25T23:10:00+03:00",
-                    "from": "2019-03-30T01:00:00+03:00",
-                    "type": "Interval"
-                },
-                "title": {
-                    "en": "No trains to Kakhovskaya station",
-                    "ru": "Поезда не ходят до «Каховской»"
-                },
-                "description": {
-                    "en": "Station closure",
-                    "ru": "Закрытие станции"
-                },
-                "changeIds": [
-                    "ch-feed3c7d-d35e-4481-87a4-7c141e1c96c0"
-                ]
-            }
-  } 
-```
-
-3. Если события отсутствуют, список может быть пустым, но должен возвращаться в формате JSON.
-Пример структуры ответа:
-
-```
-{
-    "events": {
-        "type": "IndexedCollection",
-        "items": []
-    },
-    "changes": {
-        "type": "IndexedCollection",
-        "items": []
-    }
-}
-```
-
-Фактический результат:
-1. Статус ответа: 404 Not Found.
-2. Структура ответа не совпадает с требованиями: Body ответа пустое.
-3. Ответ возвращается в формате Text.
-
-**Окружение:**
-
-macOs 10.15.2<br>
-Postman 7.22.1<br>
-API metrokit-service
-
-**Скриншот:** [https://yadi.sk/i/8es5sVV7KTEquw]
-
-**Приоритет:** средний
-
-***
-
-</details>
-
-<a name="BUG-10773" />
-<details>
-<summary>BUG-10773: При запросе списка событий /events для схемы с id=sc52507030 структура ответа не совпадает с требованиями</summary>
-
-***
-
-**Шаги воспроизведения:**
-
-1. В Postman создать и отправить GET-запрос на URI: [https://metrokit-service.maps.yandex.net/v1/events?scheme_id=sc52507030].
-2. Посмотреть ответ - список событий для схемы с id=sc52507030 (Вена).
-
-Ожидаемый результат:
-1. Статус ответа: 200 OK.
-2. Ответ возвращается в формате JSON, структура ответа для id=sc52507030 совпадает со структурой в требованиях.
-Пример структуры ответа:
-
-```
-{
-    "events": {
-        "type": "IndexedCollection",
-        "items": [
-            {
-                "id": "ev-76c50f2d-9c3d-4835-ac73-a0544b1b308e",
-                "schedule": {
-                    "to": "2019-10-25T23:10:00+03:00",
-                    "from": "2019-03-30T01:00:00+03:00",
-                    "type": "Interval"
-                },
-                "title": {
-                    "en": "No trains to Kakhovskaya station",
-                    "ru": "Поезда не ходят до «Каховской»"
-                },
-                "description": {
-                    "en": "Station closure",
-                    "ru": "Закрытие станции"
-                },
-                "changeIds": [
-                    "ch-feed3c7d-d35e-4481-87a4-7c141e1c96c0"
-                ]
-            }
-  } 
-```
-
-3. Если события отсутствуют, список может быть пустым, но должен возвращаться в формате JSON.
-Пример структуры ответа:
-
-```
-{
-    "events": {
-        "type": "IndexedCollection",
-        "items": []
-    },
-    "changes": {
-        "type": "IndexedCollection",
-        "items": []
-    }
-}
-```
-
-Фактический результат:
-1. Статус ответа: 404 Not Found.
-2. Структура ответа не совпадает с требованиями: Body ответа пустое.
-3. Ответ возвращается в формате Text.
-
-**Окружение:**
-
-macOs 10.15.2<br>
-Postman 7.22.1<br>
-API metrokit-service
-
-**Скриншот:** [https://yadi.sk/i/qm7fZ7gRUBH_1A]
-
-**Приоритет:** средний
-
-***
-
-</details>
-
-<a name="BUG-10775" />
-<details>
-<summary>BUG-10775: При запросе списка событий /events для схемы с id=sc999 структура ответа не совпадает с требованиями</summary>
-
-***
-
-**Шаги воспроизведения:**
-
-1. В Postman создать и отправить GET-запрос на URI: [https://metrokit-service.maps.yandex.net/v1/events?scheme_id=sc999].
-2. Посмотреть ответ - список событий для схемы с id=sc999 (Милан).
-
-Ожидаемый результат:
-1. Статус ответа: 200 OK.
-2. Ответ возвращается в формате JSON, структура ответа для id=sc999 совпадает со структурой в требованиях.
-Пример структуры ответа:
-
-```
-{
-    "events": {
-        "type": "IndexedCollection",
-        "items": [
-            {
-                "id": "ev-76c50f2d-9c3d-4835-ac73-a0544b1b308e",
-                "schedule": {
-                    "to": "2019-10-25T23:10:00+03:00",
-                    "from": "2019-03-30T01:00:00+03:00",
-                    "type": "Interval"
-                },
-                "title": {
-                    "en": "No trains to Kakhovskaya station",
-                    "ru": "Поезда не ходят до «Каховской»"
-                },
-                "description": {
-                    "en": "Station closure",
-                    "ru": "Закрытие станции"
-                },
-                "changeIds": [
-                    "ch-feed3c7d-d35e-4481-87a4-7c141e1c96c0"
-                ]
-            }
-  } 
-```
-
-3. Если события отсутствуют, список может быть пустым, но должен возвращаться в формате JSON.
-Пример структуры ответа:
-
-```
-{
-    "events": {
-        "type": "IndexedCollection",
-        "items": []
-    },
-    "changes": {
-        "type": "IndexedCollection",
-        "items": []
-    }
-}
-```
-
-Фактический результат:
-1. Статус ответа: 404 Not Found.
-2. Структура ответа не совпадает с требованиями: Body ответа пустое.
-3. Ответ возвращается в формате Text.
-
-**Окружение:**
-
-macOs 10.15.2<br>
-Postman 7.22.1<br>
-API metrokit-service
-
-**Скриншот:** [https://yadi.sk/i/CTRfVyRBISXlwA]
-
-**Приоритет:** средний
-
-***
-
-</details>
-
-<a name="BUG-10776" />
-<details>
-<summary>BUG-10776: При запросе списка событий /events для схемы с id=sc20559874 структура ответа не совпадает с требованиями</summary>
-
-***
-
-**Шаги воспроизведения:**
-
-1. В Postman создать и отправить GET-запрос на URI: [https://metrokit-service.maps.yandex.net/v1/events?scheme_id=sc20559874].
-2. Посмотреть ответ - список событий для схемы с id=sc20559874 (Прага).
-
-Ожидаемый результат:
-1. Статус ответа: 200 OK.
-2. Ответ возвращается в формате JSON, структура ответа для id=sc20559874 совпадает со структурой в требованиях.
-Пример структуры ответа:
-
-```
-{
-    "events": {
-        "type": "IndexedCollection",
-        "items": [
-            {
-                "id": "ev-76c50f2d-9c3d-4835-ac73-a0544b1b308e",
-                "schedule": {
-                    "to": "2019-10-25T23:10:00+03:00",
-                    "from": "2019-03-30T01:00:00+03:00",
-                    "type": "Interval"
-                },
-                "title": {
-                    "en": "No trains to Kakhovskaya station",
-                    "ru": "Поезда не ходят до «Каховской»"
-                },
-                "description": {
-                    "en": "Station closure",
-                    "ru": "Закрытие станции"
-                },
-                "changeIds": [
-                    "ch-feed3c7d-d35e-4481-87a4-7c141e1c96c0"
-                ]
-            }
-  } 
-```
-
-3. Если события отсутствуют, список может быть пустым, но должен возвращаться в формате JSON.
-Пример структуры ответа:
-
-```
-{
-    "events": {
-        "type": "IndexedCollection",
-        "items": []
-    },
-    "changes": {
-        "type": "IndexedCollection",
-        "items": []
-    }
-}
-```
-
-Фактический результат:
-1. Статус ответа: 404 Not Found.
-2. Структура ответа не совпадает с требованиями: Body ответа пустое.
-3. Ответ возвращается в формате Text.
-
-**Окружение:**
-
-macOs 10.15.2<br>
-Postman 7.22.1<br>
-API metrokit-service
-
-**Скриншот:** [https://yadi.sk/i/_IBj6x2VK8hDTw]
-
-**Приоритет:** средний
-
-***
-
-</details>
-
-[Back to top](#up)
-
-## <a name="data-bases" />Тестирование баз данных
-
-### Задание 1
-
-От разработчиков поступила задача: нужно выяснить, какие запросы шли на IP-адреса. IP-адрес состоит из четырёх чисел, они разделены точками. Тебе нужны адреса, которые начинаются с "233.201.".
-
-Логи лежат на удалённом сервере по адресу logs/2019/12. День, когда случилась ошибка, неизвестен.
-
-Твоя задача — узнать, какие запросы были отправлены.
-
-В ответе приложи:
-1. Команду, которой тебе удалось получить нужные логи.
-2. Подходящие строки, например:
-
-```bash
-184.79.247.161 - - [30/12/2019:21:38:13 +0000] "PUT /alerts HTTP/1.1" 400 3557
-```
-
-### Решение
-
-1. Команда получения логов:
-
-```bash
-grep ^233.201 /logs/2019/12/*.txt
-```
-
-2. Логи:
-
-```bash
-233.201.188.154 - - [18/12/2019:21:46:01 +0000] "DELETE /events HTTP/1.1" 403 3971
-233.201.182.9 - - [21/12/2019:21:56:20 +0000] "PATCH /users HTTP/1.1" 400 4118
-```
-
-[Наверх](#up)
-
-### Задание 2
-
-В системе обнаружен баг. Он проявлялся 30.12.2019 и 31.12.2019 с 21:30:00 до 21:39:59. При этом появлялись ошибки с номерами 400 и 500. Твоя задача — сохранить в отдельный файл логи, которые были записаны в этот период. Затем эти логи надо разложить по отдельным файлам: логи с одинаковой ошибкой положи в один файл.
-
-Как это сделать:
-1. В домашней директории на удалённом сервере создай директорию bug1.
-2. Все запросы, которые произошли в указанный период, положи в файл main.txt.
-3. Внутри директории bug1 создай директорию events.
-4. Внутри директории events создай файлы для ошибок с номерами 400 и 500. Назови эти файлы 400.txt и 500.txt соответственно. В них выдели логи с соответствующей ошибкой из файла main.txt.
-
-В ответе приложи:
-1. Команды, которые создают директории bug1 и events.
-2. Команду, которой ты выбираешь запросы за указанный период. Это те запросы, которыми ты отбираешь логи в файл main.txt.
-3. Команды, которыми ты кладёшь логи в файлы 400.txt и 500.txt из main.txt.
-4. Тексты файлов 400.txt и 500.txt.
-
-<details>
-<summary><strong>База данных о поездках такси в Чикаго</strong></summary>
-
-***
-
-Таблица `neighborhoods` — информация о районах города:
-- `neighborhood_id` — код района;
-- `name` — название района.
-Таблица `cabs` — информация о такси:
-- `cab_id` — код автомобиля;
-- `vehicle_id` — технический идентификатор автомобиля;
-- `company_name` — компания, которой принадлежит автомобиль.
-Таблица `trips` — информация о поездках:
-- `trip_id` — код поездки;
-- `cab_id` — код автомобиля, на котором была совершена поездка;
-- `start_ts` — дата и время начала поездки (время округлено до часа);
-- `end_ts` — дата и время окончания поездки (время округлено до часа);
-- `duration_seconds` — длительность поездки в секундах;
-- `distance_miles` — дальность поездки в милях;
-- `pickup_location_id` — код района города, в котором была начата поездка;
-- `dropoff_location_id` — код района города, в котором завершилась поездка.
-Таблица `weather_records` — информация о погоде:
-- `record_id` — код записи погодных наблюдений;
-- `ts` — дата и время наблюдения (время округлено до часа);
-- `temperature` — температура на момент наблюдения;
-- `description` — краткое описание погодных условий. Например, 'light rain' или 'scattered clouds'.
-
-***
-
-</details>
-
-<details>
-<summary><strong>Схема таблиц</strong></summary>
-
-***
-
-![Схема таблиц БД](https://code.s3.yandex.net/qa/schemes/project_4_sprint.png)
-
-***
-
-</details>
-
-В базе данных нет прямой связи между таблицами `trips` и `weather_records`. Связать эти таблицы можно по времени начала поездки (`trips.start_ts`) и моменту погодных наблюдений (`weather_records.ts`).
-
-### Решение
-
-1. Команды создания директорий bug1 и events:
-
-```bash
-mkdir bug1
-mkdir events
-```
-
-2. Команда выбора запросов за указанный период:
-
-```bash
-grep "21:3" ~/logs/2019/12/apache_2019-12-30.txt > ~/bug1/main.txt
-grep "21:3" ~/logs/2019/12/apache_2019-12-31.txt >> ~/bug1/main.txt
-```
-
-3. Команды сохранения логов в файлы 400.txt и 500.txt из main.txt:
-
-```bash
-grep -w "400" ~/bug1/main.txt > ~/bug1/events/400.txt
-grep -w "500" ~/bug1/main.txt > ~/bug1/events/500.txt
-```
-
-<details>
-<summary>4. 400.txt</summary>
-
-***
-
-```bash
-80.57.170.51 - - [30/12/2019:21:35:12 +0000] "DELETE /users HTTP/1.1" 400 3623
-204.235.176.118 - - [30/12/2019:21:35:13 +0000] "POST /users HTTP/1.1" 400 4704
-82.95.203.67 - - [30/12/2019:21:35:19 +0000] "DELETE /lists HTTP/1.1" 400 3737
-155.242.215.46 - - [30/12/2019:21:35:38 +0000] "POST /playbooks HTTP/1.1" 400 4450
-189.176.85.0 - - [30/12/2019:21:35:39 +0000] "PATCH /alerts HTTP/1.1" 400 2732
-13.108.71.71 - - [30/12/2019:21:35:43 +0000] "PATCH /events HTTP/1.1" 400 3410
-195.213.133.182 - - [30/12/2019:21:35:46 +0000] "PUT /customers HTTP/1.1" 400 3085
-235.243.133.78 - - [30/12/2019:21:35:47 +0000] "PATCH /customers HTTP/1.1" 400 3264
-192.57.115.49 - - [30/12/2019:21:35:55 +0000] "POST /parsers HTTP/1.1" 400 2457
-71.0.49.244 - - [30/12/2019:21:35:55 +0000] "PUT /collectors HTTP/1.1" 400 2785
-224.159.206.126 - - [30/12/2019:21:36:02 +0000] "DELETE /customers HTTP/1.1" 400 4569
-131.35.106.246 - - [30/12/2019:21:36:04 +0000] "DELETE /lists HTTP/1.1" 400 2578
-216.24.42.208 - - [30/12/2019:21:36:06 +0000] "GET /parsers HTTP/1.1" 400 4597
-123.53.150.160 - - [30/12/2019:21:37:19 +0000] "PATCH /events HTTP/1.1" 400 4379
-61.129.127.103 - - [30/12/2019:21:37:32 +0000] "GET /lists HTTP/1.1" 400 2575
-90.216.4.78 - - [30/12/2019:21:37:34 +0000] "PATCH /lists HTTP/1.1" 400 3899
-204.250.214.208 - - [30/12/2019:21:37:36 +0000] "PATCH /parsers HTTP/1.1" 400 4742
-79.214.240.98 - - [30/12/2019:21:37:37 +0000] "POST /fieldsets HTTP/1.1" 400 4441
-65.47.42.12 - - [30/12/2019:21:37:39 +0000] "PATCH /customers HTTP/1.1" 400 2500
-251.118.141.34 - - [30/12/2019:21:37:41 +0000] "POST /customers HTTP/1.1" 400 3519
-205.20.166.196 - - [30/12/2019:21:37:51 +0000] "POST /users HTTP/1.1" 400 4032
-156.217.3.46 - - [30/12/2019:21:37:52 +0000] "PATCH /parsers HTTP/1.1" 400 2020
-48.240.198.167 - - [30/12/2019:21:37:57 +0000] "PATCH /playbooks HTTP/1.1" 400 4100
-101.255.159.211 - - [30/12/2019:21:37:59 +0000] "GET /auth HTTP/1.1" 400 2324
-80.76.98.203 - - [30/12/2019:21:38:00 +0000] "POST /playbooks HTTP/1.1" 400 3045
-85.64.63.255 - - [30/12/2019:21:38:13 +0000] "PATCH /collectors HTTP/1.1" 400 2291
-184.79.247.161 - - [30/12/2019:21:38:13 +0000] "PUT /alerts HTTP/1.1" 400 3557
-93.2.134.22 - - [30/12/2019:21:39:39 +0000] "DELETE /alerts HTTP/1.1" 400 3701
-86.34.86.182 - - [31/12/2019:21:35:10 +0000] "POST /auth HTTP/1.1" 400 3626
-167.37.16.117 - - [31/12/2019:21:35:17 +0000] "PATCH /customers HTTP/1.1" 400 3294
-199.128.92.19 - - [31/12/2019:21:35:43 +0000] "PUT /users HTTP/1.1" 400 4180
-162.152.99.143 - - [31/12/2019:21:35:59 +0000] "PUT /users HTTP/1.1" 400 4606
-83.115.59.224 - - [31/12/2019:21:37:26 +0000] "GET /alerts HTTP/1.1" 400 3489
-194.10.97.226 - - [31/12/2019:21:37:31 +0000] "DELETE /lists HTTP/1.1" 400 2447
-180.99.214.40 - - [31/12/2019:21:37:44 +0000] "DELETE /alerts HTTP/1.1" 400 2077
-154.152.205.4 - - [31/12/2019:21:37:50 +0000] "GET /playbooks HTTP/1.1" 400 3324
-197.82.125.54 - - [31/12/2019:21:37:52 +0000] "PUT /fieldsets HTTP/1.1" 400 4365
-115.89.87.219 - - [31/12/2019:21:38:06 +0000] "PUT /playbooks HTTP/1.1" 400 2589
-100.77.15.14 - - [31/12/2019:21:38:07 +0000] "GET /fieldsets HTTP/1.1" 400 4911
-22.33.159.242 - - [31/12/2019:21:38:07 +0000] "GET /playbooks HTTP/1.1" 400 3955
-149.148.229.11 - - [31/12/2019:21:39:16 +0000] "GET /users HTTP/1.1" 400 2071
-236.107.64.192 - - [31/12/2019:21:39:17 +0000] "PATCH /users HTTP/1.1" 400 2791
-24.156.105.39 - - [31/12/2019:21:39:23 +0000] "GET /lists HTTP/1.1" 400 2902
-193.50.164.254 - - [31/12/2019:21:39:23 +0000] "PUT /playbooks HTTP/1.1" 400 3296
-18.123.104.91 - - [31/12/2019:21:39:52 +0000] "GET /collectors HTTP/1.1" 400 4372
-234.218.148.4 - - [31/12/2019:21:39:54 +0000] "PUT /users HTTP/1.1" 400 2509
-```
-
-***
-
-</details>
-
-<details>
-<summary>5. 500.txt</summary>
-
-***
-
-```bash
-64.250.112.189 - - [30/12/2019:21:35:13 +0000] "PUT /parsers HTTP/1.1" 500 4639
-193.253.101.180 - - [30/12/2019:21:35:31 +0000] "PATCH /alerts HTTP/1.1" 500 2944
-197.106.117.194 - - [30/12/2019:21:35:31 +0000] "PATCH /parsers HTTP/1.1" 500 3519
-247.124.71.67 - - [30/12/2019:21:35:45 +0000] "PUT /alerts HTTP/1.1" 500 2746
-62.88.204.119 - - [30/12/2019:21:35:51 +0000] "PUT /auth HTTP/1.1" 500 2666
-125.156.142.26 - - [30/12/2019:21:36:01 +0000] "PATCH /events HTTP/1.1" 500 3460
-144.170.212.70 - - [30/12/2019:21:36:04 +0000] "DELETE /parsers HTTP/1.1" 500 2599
-59.39.200.252 - - [30/12/2019:21:36:05 +0000] "GET /alerts HTTP/1.1" 500 2650
-150.136.200.100 - - [30/12/2019:21:37:24 +0000] "POST /lists HTTP/1.1" 500 2684
-84.81.25.45 - - [30/12/2019:21:37:25 +0000] "POST /auth HTTP/1.1" 500 2052
-30.222.160.141 - - [30/12/2019:21:37:30 +0000] "PATCH /parsers HTTP/1.1" 500 2017
-117.87.158.36 - - [30/12/2019:21:37:34 +0000] "POST /fieldsets HTTP/1.1" 500 4056
-212.153.128.212 - - [30/12/2019:21:37:42 +0000] "PUT /fieldsets HTTP/1.1" 500 3259
-58.188.83.217 - - [30/12/2019:21:37:46 +0000] "POST /playbooks HTTP/1.1" 500 3947
-193.123.131.146 - - [30/12/2019:21:37:47 +0000] "PUT /lists HTTP/1.1" 500 3902
-182.7.179.91 - - [30/12/2019:21:37:48 +0000] "GET /users HTTP/1.1" 500 2950
-10.25.168.164 - - [30/12/2019:21:38:05 +0000] "PATCH /playbooks HTTP/1.1" 500 3858
-215.201.210.173 - - [30/12/2019:21:38:11 +0000] "PATCH /customers HTTP/1.1" 500 3277
-179.241.103.167 - - [30/12/2019:21:39:23 +0000] "POST /lists HTTP/1.1" 500 3669
-147.188.170.252 - - [30/12/2019:21:39:33 +0000] "POST /fieldsets HTTP/1.1" 500 3313
-1.249.123.189 - - [30/12/2019:21:39:36 +0000] "PATCH /alerts HTTP/1.1" 500 4734
-124.114.135.105 - - [30/12/2019:21:39:41 +0000] "PATCH /customers HTTP/1.1" 500 3348
-35.215.100.202 - - [30/12/2019:21:39:43 +0000] "PUT /alerts HTTP/1.1" 500 4345
-86.222.23.128 - - [30/12/2019:21:39:44 +0000] "PATCH /alerts HTTP/1.1" 500 2230
-20.161.75.95 - - [30/12/2019:21:39:48 +0000] "DELETE /users HTTP/1.1" 500 2412
-196.18.151.117 - - [30/12/2019:21:39:55 +0000] "PUT /events HTTP/1.1" 500 4439
-77.101.138.151 - - [30/12/2019:21:39:57 +0000] "PUT /lists HTTP/1.1" 500 2194
-208.205.133.127 - - [31/12/2019:21:35:17 +0000] "DELETE /alerts HTTP/1.1" 500 4561
-20.145.255.91 - - [31/12/2019:21:35:30 +0000] "GET /parsers HTTP/1.1" 500 3051
-91.66.134.13 - - [31/12/2019:21:35:53 +0000] "POST /lists HTTP/1.1" 500 3319
-31.88.211.206 - - [31/12/2019:21:35:57 +0000] "DELETE /events HTTP/1.1" 500 2325
-171.37.114.114 - - [31/12/2019:21:37:39 +0000] "DELETE /fieldsets HTTP/1.1" 500 3253
-223.157.242.167 - - [31/12/2019:21:37:59 +0000] "POST /users HTTP/1.1" 500 2283
-98.181.102.34 - - [31/12/2019:21:38:06 +0000] "PATCH /fieldsets HTTP/1.1" 500 4672
-254.74.22.79 - - [31/12/2019:21:38:06 +0000] "PUT /lists HTTP/1.1" 500 2259
-103.46.238.3 - - [31/12/2019:21:38:09 +0000] "PUT /lists HTTP/1.1" 500 3992
-41.62.205.107 - - [31/12/2019:21:39:20 +0000] "PATCH /alerts HTTP/1.1" 500 3631
-22.53.105.197 - - [31/12/2019:21:39:31 +0000] "DELETE /collectors HTTP/1.1" 500 4202
-178.22.133.42 - - [31/12/2019:21:39:43 +0000] "PUT /alerts HTTP/1.1" 500 4648
-102.247.13.50 - - [31/12/2019:21:39:55 +0000] "PATCH /auth HTTP/1.1" 500 3736
-171.37.114.114 - - [31/12/2019:21:37:39 +0000] "DELETE /fieldsets HTTP/1.1" 500 3253
-223.157.242.167 - - [31/12/2019:21:37:59 +0000] "POST /users HTTP/1.1" 500 2283
-98.181.102.34 - - [31/12/2019:21:38:06 +0000] "PATCH /fieldsets HTTP/1.1" 500 4672
-254.74.22.79 - - [31/12/2019:21:38:06 +0000] "PUT /lists HTTP/1.1" 500 2259
-103.46.238.3 - - [31/12/2019:21:38:09 +0000] "PUT /lists HTTP/1.1" 500 3992
-41.62.205.107 - - [31/12/2019:21:39:20 +0000] "PATCH /alerts HTTP/1.1" 500 3631
-22.53.105.197 - - [31/12/2019:21:39:31 +0000] "DELETE /collectors HTTP/1.1" 500 4202
-178.22.133.42 - - [31/12/2019:21:39:43 +0000] "PUT /alerts HTTP/1.1" 500 4648
-102.247.13.50 - - [31/12/2019:21:39:55 +0000] "PATCH /auth HTTP/1.1" 500 3736
-```
-
-***
-
-</details>
-
-[Back to top](#up)
-
-### Задание 3
-
-У тебя есть база данных с поездками на такси. По плану на линию обслуживания должно было выйти 10550 автомобилей — эта цифра покрывает спрос пользователей. Команде поступило много жалоб — свободных автомобилей оказалось недостаточно. Сколько такси вышло на линии на самом деле? Информация о всех машинах на линии есть в таблице `cabs`.
-1. Зайди на удалённый сервер.
-2. Подключись к базе данных `chicago_taxi`.
-3. Посчитай, сколько всего автомобилей в таблице `cabs`.
-
-В ответе приложи:
-1. Число автомобилей
-2. Запрос, которым тебе удалось решить задачу.
-
-### Решение
-
-1. Число автомобилей: 5529.
-2. Запрос:
-
-```bash
-SELECT
-  COUNT(*) AS cnt
-FROM cabs;
-```
-
-[Back to top](#up)
-
-### Задание 4
-
-Посчитай количество автомобилей в каждой компании из таблицы `cabs`. Отсортируй значения по убыванию. Команда предполагает, что некоторые компании не вывели достаточно автомобилей на линию.
-
-Выведи те компании, в которых меньше 100 автомобилей. Поле с числом автомобилей назови `cnt`, поле с названием компании — `company_name`.
-
-Чтобы решить задачу, примени оператор HAVING — аналог WHERE для агрегирующих функций.
-
-В ответе приложи:
-1. Список компаний с числом автомобилей меньше 100.
-2. Запрос, которым тебе удалось решить задачу.
-
-### Решение
-
-<details>
-
-<summary>1. Список компаний с числом автомобилей меньше 100.</summary>
-
-***
-
-```bash
-                 company_name                 | cnt 
-----------------------------------------------+-----
- Nova Taxi Affiliation Llc                    |  97
- Patriot Taxi Dba Peace Taxi Associat         |  89
- Blue Diamond                                 |  85
- Checker Taxi Affiliation                     |  81
- Chicago Medallion Management                 |  80
- Chicago Independents                         |  69
- 24 Seven Taxi                                |  67
- Checker Taxi                                 |  60
- American United                              |  55
- Chicago Medallion Leasing INC                |  53
- Top Cab Affiliation                          |  49
- KOAM Taxi Association                        |  48
- Chicago Taxicab                              |  38
- Norshore Cab                                 |  34
- Gold Coast Taxi                              |  20
- Metro Group                                  |  20
- Service Taxi Association                     |  18
- 5 Star Taxi                                  |  14
- American United Taxi Affiliation             |   8
- Metro Jet Taxi A                             |   8
- Setare Inc                                   |   7
- Leonard Cab Co                               |   5
- 4615 - 83503 Tyrone Henderson                |   1
- 5062 - 34841 Sam Mestas                      |   1
- 4623 - 27290 Jay Kim                         |   1
- 5997 - 65283 AW Services Inc.                |   1
- 2092 - 61288 Sbeih company                   |   1
- 1469 - 64126 Omar Jada                       |   1
- 2733 - 74600 Benny Jona                      |   1
- 2192 - 73487 Zeymane Corp                    |   1
- 5006 - 39261 Salifu Bawa                     |   1
- 3556 - 36214 RC Andrews Cab                  |   1
- 3721 - Santamaria Express, Alvaro Santamaria |   1
- 2809 - 95474 C & D Cab Co Inc.               |   1
- 2241 - 44667 - Felman Corp, Manuel Alonso    |   1
- 3620 - 52292 David K. Cab Corp.              |   1
- 2823 - 73307 Lee Express Inc                 |   1
- 6057 - 24657 Richard Addo                    |   1
- 6742 - 83735 Tasha ride inc                  |   1
- 1085 - 72312 N and W Cab Co                  |   1
- 3591 - 63480 Chuks Cab                       |   1
- 0118 - 42111 Godfrey S.Awir                  |   1
- 6574 - Babylon Express Inc.                  |   1
- 3094 - 24059 G.L.B. Cab Co                   |   1
- 5874 - 73628 Sergey Cab Corp.                |   1
- 6743 - 78771 Luhak Corp                      |   1
- 5074 - 54002 Ahzmi Inc                       |   1
- 3623 - 72222 Arrington Enterprises           |   1
- 4053 - 40193 Adwar H. Nikola                 |   1
- Chicago Star Taxicab                         |   1
- 3011 - 66308 JBL Cab Inc.                    |   1
-```
-
-***
-
-</details>
-
-2. Запрос:
-
-```bash
-SELECT
-  company_name,
-  COUNT(cab_id) AS cnt
-FROM
-  cabs
-GROUP BY
-  company_name
-HAVING
-  COUNT(cab_id) < 100
-ORDER BY
-  cnt DESC;
-```
-
-[Back to top](#up)
-
-### Задание 5
-
-В приложении такси рассчитывается коэффициент стоимости поездки. Если погода хорошая, значение коэффициента равно 1. Если на улице дождь или шторм, коэффициент повышается до 2. У команды есть гипотеза, что в расчётах коэффициента ошибка. Чтобы проверить расчёт коэффициента, команде нужна выборка данных: разработчик может сверить коэффицент с данными в логах и исправить баг. Твоя задача — получить выборку.
-
-Чтобы это сделать:
-1. Получи описание погодных условий из таблицы `weather_records` для каждого часа.
-2. Раздели все часы на две группы оператором CASE: 'Bad', если поле `description` содержит слова rain или storm; 'Good' для всех остальных.
-3. Полученное поле назови `weather_conditions`.
-
-В результирующей таблице должно быть два поля — дата и час (`ts`) и `weather_conditions`.
-
-Сделай выборку за период с 2017-11-05 00:00 по 2017-11-06 00:00.
-
-В ответе приложи:
-1. Полученную таблицу с данными за указанный период.
-2. Запрос, которым удалось решить задачу.
-
-### Решение
-
-<details>
-<summary>1. Таблица с данными за указанный период.</summary>
-
-***
-
-```bash
-         ts          | weather_conditions 
----------------------+--------------------
- 2017-11-05 00:00:00 | Good
- 2017-11-05 01:00:00 | Bad
- 2017-11-05 02:00:00 | Good
- 2017-11-05 03:00:00 | Good
- 2017-11-05 04:00:00 | Bad
- 2017-11-05 05:00:00 | Bad
- 2017-11-05 06:00:00 | Good
- 2017-11-05 07:00:00 | Good
- 2017-11-05 08:00:00 | Good
- 2017-11-05 09:00:00 | Good
- 2017-11-05 10:00:00 | Good
- 2017-11-05 11:00:00 | Good
- 2017-11-05 12:00:00 | Good
- 2017-11-05 13:00:00 | Good
- 2017-11-05 14:00:00 | Bad
- 2017-11-05 15:00:00 | Good
- 2017-11-05 16:00:00 | Bad
- 2017-11-05 17:00:00 | Good
- 2017-11-05 18:00:00 | Bad
- 2017-11-05 19:00:00 | Bad
- 2017-11-05 20:00:00 | Bad
- 2017-11-05 21:00:00 | Good
- 2017-11-05 22:00:00 | Good
- 2017-11-05 23:00:00 | Good
- 2017-11-06 00:00:00 | Good
-```
-
-***
-
-</details>
-
-2. Запрос:
-
-```bash
-SELECT
-  ts,
-  CASE
-    WHEN description LIKE '%rain%' OR description LIKE '%storm%' THEN 'Bad'
-    ELSE 'Good'
-  END AS weather_conditions
-FROM
-  weather_records
-WHERE
-  ts BETWEEN '2017-11-05 00:00:00' AND '2017-11-06 00:00:00';
-```
-
-[Back to top](#up)
-
-### Задание 6
-
-После обновления ПО таксопарки стали сообщать, что прибыль, которую они получают, не сходится с данными, которые отдаёт приложение. Разработка предполагает, что проблема может быть в данных о количестве поездок.
-
-Чтобы определить, есть ли баг, нужно получить выборку с количеством поездок каждого таксопарка за 15 и 16 ноября 2017 года.
-
-1. Выведи поле `company_name`. Поле с числом поездок назови `trips_amount` и выведи его.
-2. Результаты, полученные в поле `trips_amount`, отсортируй по убыванию.
-
-Подсказка: чтобы решить задачу, соедини таблицы `cabs` и `trips`. Примени агрегирующие функции с группировкой. Не забудь написать конструкцию с условием.
-
-В ответе приложи:
-1. Полученную таблицу с данными за указанный период.
-2. Запрос, которым удалось решить задачу.
-
-### Решение
-
-<details>
-<summary>1. Таблица с данными за указанный период.</summary>
-
-***
-
-```bash
-                 company_name                 | trips_amount 
-----------------------------------------------+--------------
- Flash Cab                                    |        19558
- Taxi Affiliation Services                    |        11422
- Medallion Leasin                             |        10367
- Yellow Cab                                   |         9888
- Taxi Affiliation Service Yellow              |         9299
- Chicago Carriage Cab Corp                    |         9181
- City Service                                 |         8448
- Sun Taxi                                     |         7701
- Star North Management LLC                    |         7455
- Blue Ribbon Taxi Association Inc.            |         5953
- Choice Taxi Association                      |         5015
- Globe Taxi                                   |         4383
- Dispatch Taxi Affiliation                    |         3355
- Nova Taxi Affiliation Llc                    |         3175
- Patriot Taxi Dba Peace Taxi Associat         |         2235
- Checker Taxi Affiliation                     |         2216
- Blue Diamond                                 |         2070
- Chicago Medallion Management                 |         1955
- 24 Seven Taxi                                |         1775
- Chicago Medallion Leasing INC                |         1607
- Checker Taxi                                 |         1486
- American United                              |         1404
- Chicago Independents                         |         1296
- KOAM Taxi Association                        |         1259
- Chicago Taxicab                              |         1014
- Top Cab Affiliation                          |          978
- Gold Coast Taxi                              |          428
- Service Taxi Association                     |          402
- 5 Star Taxi                                  |          310
- 303 Taxi                                     |          250
- Setare Inc                                   |          230
- American United Taxi Affiliation             |          210
- Leonard Cab Co                               |          147
- Metro Jet Taxi A                             |          146
- Norshore Cab                                 |          127
- 6742 - 83735 Tasha ride inc                  |           39
- 3591 - 63480 Chuks Cab                       |           37
- 1469 - 64126 Omar Jada                       |           36
- 6743 - 78771 Luhak Corp                      |           33
- 0118 - 42111 Godfrey S.Awir                  |           33
- 6574 - Babylon Express Inc.                  |           31
- Chicago Star Taxicab                         |           29
- 1085 - 72312 N and W Cab Co                  |           29
- 2809 - 95474 C & D Cab Co Inc.               |           29
- 2092 - 61288 Sbeih company                   |           27
- 3011 - 66308 JBL Cab Inc.                    |           25
- 3620 - 52292 David K. Cab Corp.              |           21
- 4615 - 83503 Tyrone Henderson                |           21
- 3623 - 72222 Arrington Enterprises           |           20
- 5074 - 54002 Ahzmi Inc                       |           16
- 2823 - 73307 Lee Express Inc                 |           15
- 4623 - 27290 Jay Kim                         |           15
- 3721 - Santamaria Express, Alvaro Santamaria |           14
- 5006 - 39261 Salifu Bawa                     |           14
- 2192 - 73487 Zeymane Corp                    |           14
- 6057 - 24657 Richard Addo                    |           13
- 5997 - 65283 AW Services Inc.                |           12
- Metro Group                                  |           11
- 5062 - 34841 Sam Mestas                      |            8
- 4053 - 40193 Adwar H. Nikola                 |            7
- 2733 - 74600 Benny Jona                      |            7
- 5874 - 73628 Sergey Cab Corp.                |            5
- 2241 - 44667 - Felman Corp, Manuel Alonso    |            3
- 3556 - 36214 RC Andrews Cab                  |            2
-```
-
-***
-
-</details>
-
-2. Запрос:
-
-```bash
-SELECT
-  cabs.company_name AS company_name,
-  COUNT(trips.trip_id) AS trips_amount
-FROM
-  cabs
-INNER JOIN trips ON trips.cab_id = cabs.cab_id
-WHERE
-  CAST(trips.start_ts AS date) BETWEEN '2017-11-15' AND '2017-11-16'
-GROUP BY
-  company_name
-ORDER BY
-  trips_amount DESC;
-```
-
-[Back to top](#up)
-
