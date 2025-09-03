@@ -20,25 +20,21 @@ The portfolio includes some projects completed during QA Engineer training.
 
 ### Objective
 
-Verify the correctness of the website layout and the functionality of key modules for Demoshoping.ru.
+ Review the requirements for the Demoshoping service. Analyze the layout requirements, including design mockups and UI component specification
 
-**1. Study Requirements:**
-
-Review the requirements for the Demoshoping.ru service. Analyze the layout requirements, including design mockups and UI component specification
-
-**2. Test Documentation for Layout**
+**1. Test Documentation for Layout**
 
 - Analyze the layout requirements: visual appearance and correct positioning
 - Make sure the checklist includes: compliance with mockups (visual inspection, not “pixel-perfect”); responsiveness and proper display on different screen resolutions.
 
 Create a detailed checklist to verify the visual aspects of the website
 
-**3. Test Registration and Login Modules**
+**2. Test Registration and Login Modules**
 
 Verify the registration and login functionality, including user authorization.
 
 
-**4. Testing and Bug Reports**
+**3. Testing and Bug Reports**
 
 During testing, mark the test results as PASSED or FAILED. If a test is FAILED, create a bug report and record its ID in the corresponding results table.
 
@@ -54,24 +50,24 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 |4|The website header is implemented according to the design and is fully visible. The items "Catalog", "About Us" and "Contacts" in the header function as links that open the corresponding service pages when clicked|	PASSED|	-|
 |5|	The "Min. price" input field is displayed according to the design|	PASSED|	-|
 |6|	The "Max. price" input field is displayed according to the design|	PASSED	|	-|
-|7|	The number input spinners for "Max price" and "Min price" are displayed correctly|PASSED	| -|
+|7|	The number input spinners for "Max.price" and "Min.price" fields are displayed correctly|PASSED	| -|
 |8|	The "All categories" dropdown is displayed as per the design and functions correctly|PASSED| -|
 |9|	The "All manufacturers" dropdown is displayed as per the design and functions correctly|	PASSED	|	-|
 |10|	The checkbox "Free delivery" is displayed according to the design and works correctly|PASSED	| -|
 |11|	The "Apply filters" button is displayed according to the design and works correctly; clicking the button triggers a single action; repeated clicking does not trigger the action again|	PASSED	|	-|
 |12|	The "Reset filters" button is displayed according to the design and works correctly; clicking the button triggers a single action; repeated clicking does not trigger the action again|	PASSED|	-|
 |13|	All texts do not contain spelling errors|	PASSED	|	-|
-|14|	The "Registration/Login’" button is placed according to the design and is fully visible; clicking the button opens the Registration/Login page in a new tab|	PASSED|	-|
+|14|	The "Registration/Login" button is placed according to the design and is fully visible; clicking the button opens the Registration/Login page in a new tab|	PASSED|	-|
 |15|	The Demoshopping copyright and the "Terms of Use" link are placed according to the design and are fully visible; clicking the link opens the Demoshopping Terms of Use page in a new tab|	PASSED|	-|
 |16|	The "Sort" dropdown menu is displayed according to the design; clicking it opens and closes the menu; each option is clickable and triggers the correct action|	PASSED |-|
-|17|	Placeholders: the Min.price and Max.price input fields contain placeholders; the placeholder disappears when the user starts typing; it reappears if the field is cleared; the placeholder looks different from the user-entered data; all form placeholders have a consistent appearance|	PASSED|	-|
-|18|	Spinners: all spinners are displayed when the field is focused; the spinners function correctly|	FAILED	|[BUG-2610](#BUG-2610)|
+|17|	Placeholders: the "Min.price" and "Max.price" input fields contain placeholders; the placeholder disappears when the user starts typing; it reappears if the field is cleared; the placeholder looks different from the user-entered data; all form placeholders have a consistent appearance|	PASSED|	-|
+|18|	Spinners: all spinners are displayed when a field is focused; the spinners function correctly|	FAILED	|[BUG-2610](#BUG-2610)|
 |19|	Error messages are positioned according to the design and are fully visible|	PASSED	|	-|
 |20|	The quantity input fields on the product cards are displayed according to the design; negative values or non-numeric values are not accepted|	FAILED|	[BUG-2611](#BUG-2611), [BUG-2725](#BUG-2725)|
 |21|	The "Add to Cart" buttons on each product card are positioned according to the design and displayed correctly; the button label matches its functionality|	PASSED|	-|
 |22|	Paging design matches the mockup and functions correctly|PASSED|	-|
 |23|	Input fields: allow editing of entered data; field labels correspond to their logic; input data formats meet the requirements|	PASSED|	-|
-|24|	Error messages are positioned according to the design and fully visible|	PASSED|-|
+|24|	Error messages are positioned according to the design and are fully visible|	PASSED|-|
 |25|	The page layout adapts to screen size changes|	FAILED|	[BUG-2614](#BUG-2614)|
 
 **2. Test-cases: Registration and Authorization**
@@ -84,10 +80,10 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 **Steps**:
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
-1 | Open the https://qa.demoshopping.ru/login | -	| The login page is opened
-2 | Enter a valid login in the "Login" field | log2_ | The login is displayed without an error message
-3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
-4 | Click the "Sign in" button | -	| User is successfully registered and redirected to main page
+1 | Open https://qa.demoshopping.ru/login | -	| The login page is opened
+2 | Enter a valid login in the "Login" field | log2_ | The entered login is accepted without an error message
+3 | Enter a valid password in the "Password" field | 12345678q	| The entered password is accepted without an error message
+4 | Click the "Sign in" button | -	| User is successfully registered and redirected to the main page
 
 **Result**: FAILED
 
@@ -106,9 +102,9 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
-2 | Enter a login with 3 characters in the "Login" field | lo2	| The login is displayed without an error message
-3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
-4 | Click the "Sign in" button | -	| User is successfully registered and redirected to main page
+2 | Enter a login with 3 characters in the "Login" field | lo2	| The entered login is accepted without an error message
+3 | Enter a valid password in the "Password" field | 12345678q	| The entered password is accepted without an error message
+4 | Click the "Sign in" button | -	| User is successfully registered and redirected to the main page
 
 **Result**: FAILED
 
@@ -127,9 +123,9 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
-2 | Enter a valid login in the "Login" field | log1	| The login is displayed without an error message
-3 | Enter a password with 8 characters in the "Password" field | 1234567q	| The password is displayed without an error message
-4 | Click the "Sign in" button | -	| User is successfully registered and redirected to main page
+2 | Enter a valid login in the "Login" field | log1	| The entered login is accepted without an error message
+3 | Enter a password with 8 characters in the "Password" field | 1234567q	| The entered password is accepted without an error message
+4 | Click the "Sign in" button | -	| User is successfully registered and redirected to the main page
 
 **Result**: FAILED
 
@@ -148,9 +144,9 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
-2 | Enter a login with special characters except "_" in the "Login" field | log2@	| The login is displayed without an error message
-3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
-4 | Click the "Sign in" button | -	| The error message "The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _." is displayed
+2 | Enter a login with special characters except "_" in the "Login" field | log2@	| The entered login is accepted without an error message
+3 | Enter a valid password in the "Password" field | 12345678q	| The entered password is accepted without an error message
+4 | Click the "Sign in" button | -	| An error message is displayed:"The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _."
 
 **Result**: PASSED
 
@@ -167,9 +163,9 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
-2 | Enter a login with 2 characters in the "Login" field | lo	| The login is displayed without an error message
-3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
-4 | Click the "Sign in" button | -	| The error message "The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _." is displayed
+2 | Enter a login with 2 characters in the "Login" field | lo	| The entered login is accepted without an error message
+3 | Enter a valid password in the "Password" field | 12345678q	| The entered password is accepted without an error message
+4 | Click the "Sign in" button | -	| An error message is displayed: "The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _."
 
 **Result**: PASSED
 
@@ -186,9 +182,9 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login | -	| The login page is opened
-2 | Enter a login with 16 characters in the "Login" field | 1234567890Odtcps	| The login is displayed without an error message
-3 | Enter a valid password in the "Password" field | 12345678q	| The password is displayed without an error message
-4 | Click the "Sign in" button | -	| The error message "The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _." is displayed
+2 | Enter a login with 16 characters in the "Login" field | 1234567890Odtcps	| The entered login is accepted without an error message
+3 | Enter a valid password in the "Password" field | 12345678q	| The entered password is accepted without an error message
+4 | Click the "Sign in" button | -	| An error message is displayed: "The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _."
 
 **Result**: FAILED
 
@@ -209,9 +205,9 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
-2 | Enter a valid login in the "Login" field | log2_	| The login is displayed without an error message
-3 | Enter a password with 7 characters in the "Password" field | 123456q	| The password is displayed without an error message
-4 | Click the "Sign in" button | -	| The error message "The password must be at least 8 characters long, including at least one letter and one number." is displayed
+2 | Enter a valid login in the "Login" field | log2_	| The entered login is accepted without an error message
+3 | Enter a password with 7 characters in the "Password" field | 123456q	| The entered password is accepted without an error message
+4 | Click the "Sign in" button | -	| An error message is displayed: "The password must be at least 8 characters long, including at least one letter and one number."
 
 **Result**: PASSED
 
@@ -228,9 +224,9 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
-2 | Enter a valid login in the "Login" field | log2	| The login is displayed without an error message
-3 | Enter a numeric-only password in the "Password" field | 123456789	| The password is displayed without an error message
-4 | Click the "Sign in" button | -	| The error message "The password must be at least 8 characters long, including at least one letter and one number" is displayed
+2 | Enter a valid login in the "Login" field | log2	| The entered login is accepted without an error message
+3 | Enter a numeric-only password in the "Password" field | 123456789	| The entered password is accepted without an error message
+4 | Click the "Sign in" button | -	| An error message is displayed: "The password must be at least 8 characters long, including at least one letter and one number."
 
 **Result**: PASSED
 
@@ -247,9 +243,9 @@ During testing, mark the test results as PASSED or FAILED. If a test is FAILED, 
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
-2 | Enter a valid login in the "Login" field | log2	| The login is displayed without an error message
-3 | Enter a alphabetic-only password in the "Password" field | abcdefghi	| The password is displayed without an error message
-4 | Click the "Sign in" button | -	| The error message "The password must be at least 8 characters long, including at least one letter and one number" is displayed
+2 | Enter a valid login in the "Login" field | log2	| The entered login is accepted without an error message
+3 | Enter a alphabetic-only password in the "Password" field | abcdefghi	| The entered password is accepted without an error message
+4 | Click the "Sign in" button | -	|  An error message is displayed: "The password must be at least 8 characters long, including at least one letter and one number."
 
 **Result**: PASSED
 
@@ -290,9 +286,9 @@ Password: 12345678q
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
-2 | Enter a login from pre-conditions in the "Login" field| log2_ | The login is displayed without an error message
-3 | Enter a password from pre-conditions the "Password" field| 12345678q | The password is displayed without an error message
-4 | Click the "Sign in" button | -	| The error message "An account with this login/password already exists" is displayed
+2 | Enter a login from pre-conditions in the "Login" field| log2_ | The entered login is accepted without an error message
+3 | Enter a password from pre-conditions the "Password" field| 12345678q | The entered password is accepted without an error message
+4 | Click the "Sign in" button | -	| An error message is displayed: "An account with this login/password already exists" 
 
 **Result**: PASSED
 
@@ -314,9 +310,9 @@ Password: 12345678q
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
-2 | Enter a login from pre-conditions in the "Login" field| log2_ | The login is displayed without an error message
-3 | Enter a password from pre-conditions the "Password" field| 12345678q | The password is displayed without an error message
-4 | Click the "Log in" button | -	| The user is redirected to the homepage
+2 | Enter a login from pre-conditions in the "Login" field| log2_ | The entered login is accepted without an error message
+3 | Enter a password from pre-conditions in the "Password" field| 12345678q | The entered password is accepted without an error message
+4 | Click the "Log in" button | -	| The user is redirected to the main page
 
 **Result**: PASSED
 
@@ -338,9 +334,9 @@ Password: 1234578q
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
-2 | Enter an invalid login in the "Login" field| log | The login is displayed without an error message
-3 | Enter a password from pre-conditions the "Password" field| 12345678q | The password is displayed without an error message
-4 | Click the "Log in" button | -	| The error message "Incorrect username or password" is displayed
+2 | Enter an invalid login in the "Login" field| log | The entered login is accepted without an error message
+3 | Enter a password from pre-conditions in the "Password" field| 12345678q | The entered password is accepted without an error message
+4 | Click the "Log in" button | -	| An error message is displayed: "Incorrect username or password" 
 
 **Result**: FAILED
 
@@ -366,9 +362,9 @@ Password: 1234578q
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
-2 | Enter a login from pre-conditions in the "Login" field| log2_ | The login is displayed without an error message
-3 | Enter an invalid password in the "Password" field| 123456789 | The password is displayed without an error message
-4 | Click the "Log in" button | -	| The error message "Incorrect username or password" is displayed
+2 | Enter a login from pre-conditions in the "Login" field| log2_ | The entered login is accepted without an error message
+3 | Enter an invalid password in the "Password" field| 123456789 | The entered password is accepted without an error message
+4 | Click the "Log in" button | -	| An error message is displayed: "Incorrect username or password" 
 
 **Result**: FAILED
 
@@ -390,9 +386,9 @@ The user doesn't exist
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru/login| -	| The login page is opened
-2 | Enter a valid login in the "Login" field| non_ex| The login is displayed without an error message
-3 | Enter a valid password the "Password" field| 1234567nex | The password is displayed without an error message
-4 | Click the "Log in" button | -	| The error message "Incorrect username or password" is displayed
+2 | Enter a valid login in the "Login" field| non_ex| The entered login is accepted without an error message
+3 | Enter a valid password in the "Password" field| 1234567nex | The entered password is accepted without an error message
+4 | Click the "Log in" button | -	| An error message is displayed: "Incorrect username or password" 
 
 **Result**: FAILED
 
@@ -414,7 +410,7 @@ The user is authorized
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru| -	| The main page is opened
-2 | Click the "Cart", "Payments" or "History" button | - | The user can access the functions
+2 | Click the "Cart", "Payments", or "History" button | - | The user can access the functions
 
 **Result**: PASSED
 
@@ -423,7 +419,7 @@ The user is authorized
 </details>
 
 <details>
-<summary>ID-17: Verify unauthorized user cannot access "Cart", "Payments" or "History"</summary>
+<summary>ID-17: Verify unauthorized user cannot access "Cart", "Payments", or "History"</summary>
 
 ***
 **Pre-conditions:**
@@ -434,7 +430,7 @@ The user is unauthorized
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru| -	| The main page is opened
-2 | Click the "Cart", "Payments" or "History" button | - |The authorization message "Please log in https://qa.demoshopping.ru/login to add an item to the cart" is displayed
+2 | Click the "Cart", "Payments", or "History" button | - |An authorization message is displayed: "Please log in https://qa.demoshopping.ru/login to add an item to the cart"
 
 **Result**: PASSED
 
@@ -454,7 +450,7 @@ The user is unauthorized
 № | Action| Input data | Expected result
 :--:|:--|:---|:----
 1 | Open the https://qa.demoshopping.ru| -	| The main page is opened
-2 | Click the "Cart", "Payments" or "History" button | - |The authorization message "Please log in https://qa.demoshopping.ru/login to add an item to the cart" is displayed
+2 | Click the "Cart", "Payments", or "History" button | - |An authorization message is displayed: "Please log in https://qa.demoshopping.ru/login to add an item to the cart"
 3 | Click the login link in the authorization message | -| The user is redirected to the login page
 
 **Result**: FAILED
@@ -492,7 +488,7 @@ The user is authorized
 
 <a name="BUG-2608" />
 <details>
-<summary>BUG-2608: The website's favicon isn't displayed on the browser tab</summary>
+<summary>BUG-2608: The website's favicon is not displayed on the browser tab</summary>
 
 ***
 
@@ -500,7 +496,7 @@ The user is authorized
 
 1. Open qa.demoshopping.ru
 
-**Actual result**: The website's favicon isn't displayed on the browser tab.
+**Actual result**: The website's favicon is not displayed on the browser tab.
 
 **Expected result**: The website's favicon is displayed on the browser tab.
 
@@ -520,7 +516,7 @@ Google Chrome 138.0.7204.101<br>
 
 <a name="BUG-2614" />
 <details>
-<summary>BUG-2614: Pagination is not responsive and shifts off-screen when resizing the layout</summary>
+<summary>BUG-2614: Pagination is not responsive and shifts off-screen when resizing the window</summary>
 
 ***
 
@@ -532,7 +528,7 @@ Google Chrome 138.0.7204.101<br>
 
 **Actual Result**: Pagination shifts off-screen and becomes partially hidden.
 
-**Expected Result**: Pagination remains visible and correctly aligned within the viewport.
+**Expected Result**: Pagination remains visible and properly aligned within the viewport.
 
 **Environment:**
 
@@ -663,7 +659,7 @@ Google Chrome 138.0.7204.101<br>
 
 **Actual result**: Invalid login length (16) leads to server error
 
-**Expected result**: The user sees the message: “The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _"
+**Expected result**: An error message is displayed: “The username must contain 3 to 15 characters and can include letters, numbers, and symbols: _"
 
 **Environment:**
 
@@ -713,7 +709,7 @@ Google Chrome 138.0.7204.101<br>
 
 <a name="BUG-2707" />
 <details>
-<summary>BUG-2707: Login: wrong credentials show incorrect error message</summary>
+<summary>BUG-2707: Login: Wrong credentials show an incorrect error message</summary>
 
 ***
 
@@ -725,7 +721,7 @@ Google Chrome 138.0.7204.101<br>
 
 **Actual result**: An incorrect message is displayed: “An error occurred while processing the request”
 
-**Expected result**: The message displayed should be: “Incorrect username or password” 
+**Expected result**: The error message should be: “Incorrect username or password” 
 
 **Environment:**
 
@@ -753,7 +749,7 @@ The user is unauthorized
 **Steps:**
 
 1. Open qa.demoshopping.ru
-2. Click the "Cart", "Payments" or "History" button  
+2. Click the "Cart", "Payments", or "History" button  
 3. Click the login link in the authorization message 
 
 **Actual result**: The main page reloads; the user is not redirected to the login page.
@@ -789,7 +785,7 @@ The user is authorized
 2. Click the "Payments" button  
 3. Click "log out" button  
 
-**Actual result**: The user is not redirected to the login page and the page data remains accessible.
+**Actual result**: The user is not redirected to the login page, and the page data remains accessible.
 
 **Expected result**: The system reverts to an unauthorized state, and the user is redirected to the login page.
 
